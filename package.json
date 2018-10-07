@@ -1,0 +1,18 @@
+{
+  "name": "react-redux",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/chibuezeayogu/React-Redux.git",
+  "author": "Chibueze Ayogu <chibueze.ayogu@hotmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.16.3",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0"
+  }
+}
