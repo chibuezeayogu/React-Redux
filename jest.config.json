@@ -6,7 +6,8 @@
   "collectCoverageFrom": [
     "src/**/*.{js,jsx}",
     "!**/node_modules/**",
-    "!src/utils/!(mealsHelper).js"
+    "!src/utils/!(mealsHelper).js",
+    "!src/api/*.js"
   ],
   "moduleNameMapper": {
     "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",
@@ -19,5 +20,6 @@
   "transformIgnorePatterns": [
     "/node_modules/"
   ],
-  "testEnvironment": "jest-environment-jsdom"
+  "testEnvironment": "jest-environment-jsdom",
+  "testPathIgnorePatterns":["api"]
 }
