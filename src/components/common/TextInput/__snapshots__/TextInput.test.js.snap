@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput Component should render correctly 1`] = `
+<div
+  className="form-group has-error"
+>
+  <label
+    htmlFor=""
+  />
+  <div
+    className="field"
+  >
+    <input
+      className="form-control"
+      name=""
+      onChange={[MockFunction]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+    <div
+      className="alert alert-danger"
+    >
+      error
+    </div>
+  </div>
+</div>
+`;
