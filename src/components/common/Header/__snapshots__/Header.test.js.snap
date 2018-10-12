@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component should render correctly 1`] = `
+<nav>
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    to="/"
+  >
+    Home
+  </NavLink>
+   | 
+  <Link
+    activeClassName="active"
+    replace={false}
+    to="/courses"
+  >
+    Courses
+  </Link>
+   | 
+  <Link
+    activeClassName="active"
+    replace={false}
+    to="/about"
+  >
+    About
+  </Link>
+</nav>
+`;
