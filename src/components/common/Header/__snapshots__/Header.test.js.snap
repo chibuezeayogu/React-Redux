@@ -1,29 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header Component should render correctly 1`] = `
-<nav>
-  <NavLink
-    activeClassName="active"
-    aria-current="page"
-    to="/"
+<nav
+  className="navbar navbar-expand-lg navbar-light bg-light"
+>
+  <a
+    className="navbar-brand"
   >
-    Home
-  </NavLink>
-   | 
-  <Link
-    activeClassName="active"
-    replace={false}
-    to="/courses"
+    Navbar
+  </a>
+  <button
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#navbarNav"
+    data-toggle="collapse"
+    type="button"
   >
-    Courses
-  </Link>
-   | 
-  <Link
-    activeClassName="active"
-    replace={false}
-    to="/about"
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="collapse navbar-collapse justify-content-end"
+    id="navbarNav"
   >
-    About
-  </Link>
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-item nav-link"
+        to="/"
+      >
+        Home
+        <span
+          className="sr-only"
+        >
+          (current)
+        </span>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-item nav-link"
+        to="/courses"
+      >
+        Courses
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-item nav-link"
+        to="/about"
+      >
+        About
+      </NavLink>
+    </div>
+  </div>
 </nav>
 `;

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseList Component should render correctly 1`] = `
+<table
+  className="table table-striped"
+>
+  <thead>
+    <tr>
+      <th
+        scope="col"
+      >
+         
+      </th>
+      <th
+        scope="col"
+      >
+        Title
+      </th>
+      <th
+        scope="col"
+      >
+        Author
+      </th>
+      <th
+        scope="col"
+      >
+        Category
+      </th>
+      <th
+        scope="col"
+      >
+        Length
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <CourseListRow
+      course={
+        Object {
+          "authorId": "cory-house",
+          "category": "JavaScript",
+          "id": "react-flux-building-applications",
+          "length": "5:08",
+          "title": "Building Applications in React and Flux",
+          "watchHref": "http://www.pluralsight.com/courses/react-flux-building-applications",
+        }
+      }
+      key="react-flux-building-applications"
+    />
+  </tbody>
+</table>
+`;

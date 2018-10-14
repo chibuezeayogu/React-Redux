@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoursePage Component should render correctly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="jumbotron"
+  >
+    <h1>
+      Courses Page
+    </h1>
+    <button
+      className="btn btn-secondary"
+      onClick={[Function]}
+      type="button"
+    >
+      Secondary
+    </button>
+  </div>
+  <CourseList />
+</div>
+`;

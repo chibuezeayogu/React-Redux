@@ -1,7 +1,40 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { resolve, join } = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
+  mode: 'production',
+  entry:[
+    resolve(__dirname, './src/index.js')
+  ],
+  output: {
+    path: join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/'
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: './src/index.html',
+      filename: './index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
+  ],
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin({}),
+    ]
+  },
 	module: {
 		rules: [
 			{
@@ -24,32 +57,33 @@ module.exports = {
 				test: /\.(js)$/,
 				exclude: /node_modules/,
 				use: ['babel-loader', 'eslint-loader']
-			},
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf|png|svg|jpg|gif)$/,
+        use: [
+        'file-loader',
+        'url-loader'
+        ]
+      },
 			{
-				test: /\.css$/,
-				use: [MiniCssExtractPlugin.loader, 'css-loader']
+				test: /\.(sa|sc|c)ss$/,
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
 			},
 		]
 	},
 	resolve: {
 		extensions: ['.js', '.jsx']
 	},
-	plugins: [
-		new HtmlWebPackPlugin({
-			template: './src/index.html',
-			filename: './index.html'
-		}),
-		new MiniCssExtractPlugin({
-			filename: '[name].css',
-			chunkFilename: '[id].css'
-		})
-	],
 	devtool: 'source-map',
 	stats: {
 		children: false,
 		assets: true,
 		builtAt: true,
-		warnings: true,
+		warnings: false,
 		errors: true,
 	}
 };
