@@ -12,7 +12,8 @@
   "moduleNameMapper": {
     "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",
     "^[./a-zA-Z0-9$_-]+\\.png$": "<rootDir>/RelativeImageStub.js",
-    "module_name_(.*)": "<rootDir>/substituted_module_$1.js"
+    "module_name_(.*)": "<rootDir>/substituted_module_$1.js",
+    "\\.(css|scss)$": "<rootDir>/src/test/__mocks__/fileMock.js"
   },
   "snapshotSerializers": [
     "enzyme-to-json/serializer"
@@ -21,5 +22,5 @@
     "/node_modules/"
   ],
   "testEnvironment": "jest-environment-jsdom",
-  "testPathIgnorePatterns":["api"]
+  "testPathIgnorePatterns":["api", "__mocks__"]
 }
