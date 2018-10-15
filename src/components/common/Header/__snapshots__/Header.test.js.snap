@@ -4,60 +4,64 @@ exports[`Header Component should render correctly 1`] = `
 <nav
   className="navbar navbar-expand-lg navbar-light bg-light"
 >
-  <a
-    className="navbar-brand"
-  >
-    Navbar
-  </a>
-  <button
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    className="navbar-toggler"
-    data-target="#navbarNav"
-    data-toggle="collapse"
-    type="button"
-  >
-    <span
-      className="navbar-toggler-icon"
-    />
-  </button>
   <div
-    className="collapse navbar-collapse justify-content-end"
-    id="navbarNav"
+    className="container"
   >
-    <div
-      className="navbar-nav"
+    <a
+      className="navbar-brand"
     >
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="nav-item nav-link"
-        to="/"
+      Navbar
+    </a>
+    <button
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      className="navbar-toggler"
+      data-target="#navbarNav"
+      data-toggle="collapse"
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse justify-content-end"
+      id="navbarNav"
+    >
+      <div
+        className="navbar-nav"
       >
-        Home
-        <span
-          className="sr-only"
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-item nav-link"
+          to="/"
         >
-          (current)
-        </span>
-      </NavLink>
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="nav-item nav-link"
-        to="/courses"
-      >
-        Courses
-      </NavLink>
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="nav-item nav-link"
-        to="/about"
-      >
-        About
-      </NavLink>
+          Home
+          <span
+            className="sr-only"
+          >
+            (current)
+          </span>
+        </NavLink>
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-item nav-link"
+          to="/courses"
+        >
+          Courses
+        </NavLink>
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-item nav-link"
+          to="/about"
+        >
+          About
+        </NavLink>
+      </div>
     </div>
   </div>
 </nav>

@@ -24,7 +24,8 @@ export class CoursesPage extends Component {
 		return (
 			<div>
 				<div className="jumbotron">
-					<h1>Courses Page</h1>
+					<h1 className="display-4">Courses Page</h1>
+					<hr className="my-4"/>
 					<button type="button"
 						className="btn btn-primary"
 						onClick={this.redirectToAddCoursePage}>
