@@ -6,7 +6,11 @@ exports[`SelectInput Component should render correctly 1`] = `
 >
   <label
     htmlFor=""
-  />
+  >
+    <span>
+      error
+    </span>
+  </label>
   <div
     className="field"
   >
@@ -26,11 +30,6 @@ exports[`SelectInput Component should render correctly 1`] = `
         text
       </option>
     </select>
-    <div
-      className="alert alert-danger"
-    >
-      error
-    </div>
   </div>
 </div>
 `;

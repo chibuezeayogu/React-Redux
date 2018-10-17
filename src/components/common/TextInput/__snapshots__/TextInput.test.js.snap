@@ -6,7 +6,12 @@ exports[`TextInput Component should render correctly 1`] = `
 >
   <label
     htmlFor=""
-  />
+  >
+     
+    <span>
+      error
+    </span>
+  </label>
   <div
     className="field"
   >
@@ -18,11 +23,6 @@ exports[`TextInput Component should render correctly 1`] = `
       type="text"
       value=""
     />
-    <div
-      className="alert alert-danger"
-    >
-      error
-    </div>
   </div>
 </div>
 `;

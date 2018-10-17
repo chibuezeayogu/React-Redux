@@ -11,7 +11,7 @@ const TextInput = ({
 
 	return (
 		<div className={wrapperClass}>
-			<label htmlFor={name}>{label}</label>
+			<label htmlFor={name}>{label} {error && <span>{error}</span>}</label>
 			<div className="field">
 				<input
 					type="text"
@@ -20,7 +20,6 @@ const TextInput = ({
 					placeholder={placeholder}
 					value={value}
 					onChange={onChange}/>
-				{error && <div className="alert alert-danger">{error}</div>}
 			</div>
 		</div>
 	);
