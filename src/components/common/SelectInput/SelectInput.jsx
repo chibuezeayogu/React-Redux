@@ -7,7 +7,7 @@ const SelectInput = ({
 	name, label, onChange, defaultOption, value, error, options 
 }) => (
 	<div className="form-group">
-		<label htmlFor={name}>{label}</label>
+		<label htmlFor={name}>{label}{error && <span>{error}</span>}</label>
 		<div className="field">
 			<select
 				name={name}
@@ -19,7 +19,6 @@ const SelectInput = ({
 					<option key={option.value} value={option.value}>{option.text}</option>
 				))}
 			</select>
-			{error && <div className="alert alert-danger">{error}</div>}
 		</div>
 	</div>
 );

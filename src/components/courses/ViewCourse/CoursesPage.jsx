@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { array } from 'prop-types';
 import { connect } from 'react-redux';
-import { loadCourses } from '../../../actions/courseActions';
-import { loadAuthors } from '../../../actions/authorActions';
 import CourseList from './CourseList';
 
 /**
@@ -15,7 +13,7 @@ export class CoursesPage extends Component {
    * @returns {void}
    */
 	redirectToAddCoursePage = () => {
-		this.props.history.push('/courses');
+		this.props.history.push('/course');
 	}
 
 	render() {
