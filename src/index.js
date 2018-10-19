@@ -7,9 +7,9 @@ import Popper from 'popper.js';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min';
 import { BrowserRouter } from 'react-router-dom';
 
-import App from './components/App/App';
+import App from './components/app/App';
 import store from './store/configureStore';
-import './styles/styles.scss';
+import './styles/main.scss';
 import { loadCourses } from './actions/courseActions';
 import { loadAuthors } from './actions/authorActions';
 

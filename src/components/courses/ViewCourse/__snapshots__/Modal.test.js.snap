@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal Component should render correctly 1`] = `
+<div
+  className="modal"
+  id="delete-course-modal"
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div
+    className="modal-content"
+  >
+    <div
+      className="modal-header"
+    >
+      <div
+        className="header-title"
+      >
+        Delete Course
+      </div>
+    </div>
+    <h3>
+      Are you sure you want to delete
+    </h3>
+    <span
+      className="warning"
+    >
+      Building Applications in React and Flux
+    </span>
+    <div
+      className="modal-footer"
+    >
+      <div
+        className=""
+      >
+        <button
+          className="grayed upper"
+          onClick={[MockFunction]}
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          className="fill upper delete-course"
+          onClick={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

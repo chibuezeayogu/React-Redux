@@ -3,11 +3,6 @@
 exports[`AboutPage Component should render correctly 1`] = `
 <form>
   <TextInput
-    label="Course ID"
-    name="id"
-    onChange={[MockFunction]}
-  />
-  <TextInput
     error=""
     label="Title"
     name="title"
@@ -29,11 +24,6 @@ exports[`AboutPage Component should render correctly 1`] = `
     name="category"
     onChange={[MockFunction]}
     value=""
-  />
-  <TextInput
-    label="Course Url"
-    name="watchHref"
-    onChange={[MockFunction]}
   />
   <TextInput
     error=""

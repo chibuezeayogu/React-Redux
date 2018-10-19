@@ -7,14 +7,14 @@ import CourseList from './CourseList';
 
 describe('CourseList Component', () => {
 	const props = {
-		courses: [{
+		course: {
 			id: 'react-flux-building-applications',
 			title: 'Building Applications in React and Flux',
 			watchHref: 'http://www.pluralsight.com/courses/react-flux-building-applications',
 			authorId: 'cory-house',
 			length: '5:08',
 			category: 'JavaScript'
-		}]
+		}
 	};
   
 	const wrapper = shallow(<CourseList {...props} />);

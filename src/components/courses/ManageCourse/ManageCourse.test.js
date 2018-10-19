@@ -51,9 +51,9 @@ describe('ManageCourse Component', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	it('should call updateCourseState method', () => {
+	it('should call onChange method', () => {
 		const Spy = jest
-			.spyOn(wrapper.instance(), 'updateCourseState');
+			.spyOn(wrapper.instance(), 'onChange');
 		const event = { 
 			preventDefault: jest.fn(),
 			target: {
@@ -62,7 +62,7 @@ describe('ManageCourse Component', () => {
 			}
 		};
 		wrapper.setState({ errors: { id: '*required' } });
-		wrapper.instance().updateCourseState(event);
+		wrapper.instance().onChange(event);
 		expect(Spy).toHaveBeenCalled();
 	});
 
