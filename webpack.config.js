@@ -11,13 +11,14 @@ module.exports = {
   ],
   output: {
     path: resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    filename: 'js/bundle.js',
     publicPath: '/'
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
-      inject: 'body'
+      inject: 'body',
+
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -65,7 +66,7 @@ module.exports = {
         ]
       },
 			{
-				test: /\.(sa|sc|c)ss$/,
+				test: /\.(sa|sc|c|le)ss$/,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',

@@ -1,23 +1,48 @@
 import React, { Component } from 'react';
 import { array } from 'prop-types';
 import { connect } from 'react-redux';
+import Pagination from 'rc-pagination';
 
 import { deleteCourse } from '../../../actions/courseActions';
 import CourseList from './CourseList';
 import Modal from './Modal';
+import formatPagination from '../../../helpers/formatPagination';
 
 /**
  * @class CoursePage
  * @extends Component
  */
 export class CoursesPage extends Component {
+	static initialState = () => ({
+		modalContent: {},
+		displayModal: false,
+		isDeleting: false,
+		courses: [],
+		pageSize: '',
+		totalCount: '',
+		currentPage: '',
+	})
+
 	constructor(props) {
 		super(props);
-		this.state = {
-			modalContent: {},
-			displayModal: false,
-			isDeleting: false
-		};
+		this.state = CoursesPage.initialState();
+	}
+	
+	static getDerivedStateFromProps(nextProps, nextState) {
+		const current = Number(nextProps.location.search.slice(6));
+		let Output = {};
+		if (nextProps.courses.length > 0) {
+			Output = formatPagination(nextProps.courses, current);
+			return {
+				...CoursesPage.initialState(),
+				courses: Output.courses,
+				pageSize: Output.pageSize,
+				totalCount: Output.totalCount,
+				currentPage: Output.currentPage
+			};
+		}
+
+		return null;
 	}
 
 	/**
@@ -61,9 +86,20 @@ export class CoursesPage extends Component {
 		}));
 	}
 
+	/**
+   * @memberof CoursePage
+	 * @param {object} current
+	 * @param {object} pageSize
+   * @returns {void}
+   */
+	handlePageChange = (current) => {
+		this.props.history.push(`/courses?page=${current}`);
+	}
+
 	render() {
-		const { courses } = this.props;
-		const { displayModal, modalContent } = this.state;
+		const {
+			displayModal, modalContent, courses, pageSize, totalCount, currentPage
+		} = this.state;
 
 		return (
 			<div>
@@ -104,6 +140,12 @@ export class CoursesPage extends Component {
 					isDeleting={this.state.isDeleting}
 					modalContent={modalContent}
 					deleteCourse={this.deleteCourse}
+				/>
+				<Pagination
+					onChange={this.handlePageChange}
+					current={currentPage}
+					pageSize={pageSize}
+					total={totalCount}
 				/>
 			</div>
 		);

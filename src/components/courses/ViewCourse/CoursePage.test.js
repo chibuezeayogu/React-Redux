@@ -8,6 +8,7 @@ describe('CoursePage Component', () => {
 		history: {
 			push: jest.fn()
 		},
+		location: { search: '?page=1' },
 		courses: [{
 			id: 'react-flux-building-applications',
 			title: 'Building Applications in React and Flux',

@@ -13,18 +13,20 @@ import formattedAuthorsDropdown from '../../../helpers/formatAuthorsDropdown';
  * @extends Component
  */
 export class ManageCourse extends Component {
+	static initialState = () => ({
+		course: { 
+			title: '', 
+			authorId: '', 
+			length: '', 
+			category: ''
+		},
+		errors: {}
+	})
+
 	constructor(props) {
 		super(props);
     
-		this.state = {
-			course: { 
-				title: '', 
-				authorId: '', 
-				length: '', 
-				category: ''
-			},
-			errors: {}
-		};
+		this.state = ManageCourse.initialState();
 	}
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
@@ -32,7 +34,9 @@ export class ManageCourse extends Component {
 
 		if (courseId && nextProps.courses.length > 0) {
 			return {
+				...ManageCourse.initialState(),
 				course: getCourseById(nextProps.courses, courseId),
+	
 			};
 		}
 		
@@ -46,18 +50,14 @@ export class ManageCourse extends Component {
    * @returns {void}
    */
 	onChange = (event) => {
-		const { errors } = this.state;
+		const { errors, course } = this.state;
 	
-
 		if (Object.entries(errors).length > 0) {
 			this.setState({ errors: {} });
 		}
+		course[event.target.name] = event.target.value;
 		
-		this.setState(prev => ({
-			course: {
-				[event.target.name]: event.target.value
-			}
-		}));
+		this.setState({ course });
 	}
   
 	/**
