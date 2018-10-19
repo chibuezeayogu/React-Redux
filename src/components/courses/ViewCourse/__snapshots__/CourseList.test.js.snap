@@ -1,52 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CourseList Component should render correctly 1`] = `
-<table
-  className="table table-striped"
->
-  <thead>
-    <tr>
-      <th
-        scope="col"
-      >
-         
-      </th>
-      <th
-        scope="col"
-      >
-        Title
-      </th>
-      <th
-        scope="col"
-      >
-        Author
-      </th>
-      <th
-        scope="col"
-      >
-        Category
-      </th>
-      <th
-        scope="col"
-      >
-        Length
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <CourseListRow
-      course={
-        Object {
-          "authorId": "cory-house",
-          "category": "JavaScript",
-          "id": "react-flux-building-applications",
-          "length": "5:08",
-          "title": "Building Applications in React and Flux",
-          "watchHref": "http://www.pluralsight.com/courses/react-flux-building-applications",
-        }
-      }
-      key="react-flux-building-applications"
-    />
-  </tbody>
-</table>
+<tr>
+  <td
+    scope="row"
+  >
+    <a
+      href="http://www.pluralsight.com/courses/react-flux-building-applications"
+      target="_blank"
+    >
+      Watch
+    </a>
+  </td>
+  <td>
+    <Link
+      replace={false}
+      to="/course/react-flux-building-applications"
+    >
+      Building Applications in React and Flux
+    </Link>
+  </td>
+  <td>
+    cory-house
+  </td>
+  <td>
+    JavaScript
+  </td>
+  <td>
+    5:08
+  </td>
+  <td>
+    <span
+      onClick={[Function]}
+      tabIndex={1}
+      type="button"
+    >
+      delete
+    </span>
+  </td>
+</tr>
 `;

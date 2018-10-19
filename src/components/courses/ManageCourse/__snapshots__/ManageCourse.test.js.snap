@@ -93,34 +93,6 @@ exports[`ManageCourse Component should render correctly 1`] = `
   >
     <form>
       <TextInput
-        label="Course ID"
-        name="id"
-        onChange={[Function]}
-        value="courseID"
-      >
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="id"
-          >
-            Course ID
-             
-          </label>
-          <div
-            className="field"
-          >
-            <input
-              className="form-control"
-              name="id"
-              onChange={[Function]}
-              type="text"
-              value="courseID"
-            />
-          </div>
-        </div>
-      </TextInput>
-      <TextInput
         label="Title"
         name="title"
         onChange={[Function]}
@@ -216,34 +188,6 @@ exports[`ManageCourse Component should render correctly 1`] = `
             <input
               className="form-control"
               name="category"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
-          </div>
-        </div>
-      </TextInput>
-      <TextInput
-        label="Course Url"
-        name="watchHref"
-        onChange={[Function]}
-        value=""
-      >
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="watchHref"
-          >
-            Course Url
-             
-          </label>
-          <div
-            className="field"
-          >
-            <input
-              className="form-control"
-              name="watchHref"
               onChange={[Function]}
               type="text"
               value=""

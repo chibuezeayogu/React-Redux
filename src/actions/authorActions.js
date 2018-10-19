@@ -1,8 +1,8 @@
-import * as types from './actionTypes';
+import { LOAD_AUTHORS_SUCCESS } from './actionTypes';
 import authorApi from '../api/mockAuthorApi';
 
 export const loadAuthorsSuccess = authors => ({
-	type: types.LOAD_AUTHORS_SUCCESS, authors
+	type: LOAD_AUTHORS_SUCCESS, authors
 });
 
 export const loadAuthors = () => dispatch => {

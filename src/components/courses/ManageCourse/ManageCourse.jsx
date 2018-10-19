@@ -17,9 +17,7 @@ export class ManageCourse extends Component {
 		super(props);
     
 		this.state = {
-			course: {
-				id: '', 
-				watchHref: '', 
+			course: { 
 				title: '', 
 				authorId: '', 
 				length: '', 
@@ -44,21 +42,22 @@ export class ManageCourse extends Component {
 	/**
    * 
    * @memberof ManageCoursePage
-   * @param {Object} evt
+   * @param {Object} event
    * @returns {void}
    */
-	updateCourseState = (evt) => {
+	onChange = (event) => {
 		const { errors } = this.state;
-		const field = evt.target.name;
+	
 
 		if (Object.entries(errors).length > 0) {
 			this.setState({ errors: {} });
 		}
-		const course = Object.assign({}, this.state.course);
-		course[field] = evt.target.value;
-		this.setState({
-			course
-		});
+		
+		this.setState(prev => ({
+			course: {
+				[event.target.name]: event.target.value
+			}
+		}));
 	}
   
 	/**
@@ -80,6 +79,7 @@ export class ManageCourse extends Component {
 
 	render() {
 		const authorsDropdown = formattedAuthorsDropdown(this.props.authors);
+
 		return (
 			<Fragment>
 				<div className="jumbotron">
@@ -88,7 +88,7 @@ export class ManageCourse extends Component {
 				</div>
 				<CourseForm
 					allAuthors={authorsDropdown}
-					onChange={this.updateCourseState}
+					onChange={this.onChange}
 					onSave={this.saveCourse}
 					course={this.state.course}
 					errors={this.state.errors}/>
@@ -104,9 +104,9 @@ ManageCourse.propTypes = {
 };
 
 
-const mapStateToProps = state => ({
-	courses: state.courses,
-	authors: state.authors
+const mapStateToProps = ({ coursesReducer, authorsReducer }) => ({
+	courses: coursesReducer.courses,
+	authors: authorsReducer.authors
 });
 
 export default connect(mapStateToProps, { saveCourse })(ManageCourse);

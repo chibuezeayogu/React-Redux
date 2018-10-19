@@ -1,22 +1,24 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import CourseListRow from './CourseListRow';
+import Modal from './Modal';
 
-describe('CourseListRow Component', () => {
+describe('Modal Component', () => {
 	const props = {
-		course: {
+		modalContent: {
 			id: 'react-flux-building-applications',
 			title: 'Building Applications in React and Flux',
-			watchHref: 'http://www.pluralsight.com/courses/react-flux-building-applications',
+			watchHref: 'http://www.pluralsight.com/courses/react-flux-building',
 			authorId: 'cory-house',
 			length: '5:08',
 			category: 'JavaScript'
-		}
+		},
+		deleteCourse: jest.fn(),
+		closeModal: jest.fn(),
+		displayModal: true
 	};
   
-	const wrapper = shallow(<CourseListRow {...props} />);
+	const wrapper = shallow(<Modal {...props} />);
   
 	it('should render correctly', () => {
 		expect(wrapper).toMatchSnapshot();

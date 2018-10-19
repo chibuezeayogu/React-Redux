@@ -8,6 +8,15 @@ describe('CoursePage Component', () => {
 		history: {
 			push: jest.fn()
 		},
+		courses: [{
+			id: 'react-flux-building-applications',
+			title: 'Building Applications in React and Flux',
+			watchHref: 'http://www.pluralsight.com/courses/react-flux-building',
+			authorId: 'cory-house',
+			length: '5:08',
+			category: 'JavaScript'
+		}],
+		deleteCourse: jest.fn().mockImplementation(() => Promise.resolve())
 	};
 	const wrapper = shallow(<CoursesPage {...props}/>);
   
@@ -19,5 +28,23 @@ describe('CoursePage Component', () => {
 		const spy = jest.spyOn(wrapper.instance(), 'redirectToAddCoursePage');
 		wrapper.instance().redirectToAddCoursePage();
 		expect(spy).toHaveBeenCalled();
+	});
+
+	it('should call showDeleteModal method', () => {
+		const spy = jest.spyOn(wrapper.instance(), 'showDeleteModal');
+		wrapper.instance().showDeleteModal();
+		expect(spy).toHaveBeenCalled();
+	});
+	
+	it('should call deleteCourse method', () => {
+		const deleteVendorSpy = jest.spyOn(wrapper.instance(), 'deleteCourse');
+		wrapper.instance().deleteCourse();
+		expect(deleteVendorSpy).toHaveBeenCalled();
+	});
+
+	it('should call closeModal method', () => {
+		const closeModalSpy = jest.spyOn(wrapper.instance(), 'closeModal');
+		wrapper.instance().closeModal();
+		expect(closeModalSpy).toHaveBeenCalled();
 	});
 });

@@ -1,24 +1,23 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const { resolve, join } = require('path');
+const { resolve } = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-  mode: 'production',
   entry:[
     resolve(__dirname, './src/index.js')
   ],
   output: {
-    path: join(__dirname, 'dist'),
+    path: resolve(__dirname, './dist'),
     filename: 'bundle.js',
     publicPath: '/'
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
-      filename: './index.html'
+      inject: 'body'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',

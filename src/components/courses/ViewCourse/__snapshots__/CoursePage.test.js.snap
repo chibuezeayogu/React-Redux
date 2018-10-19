@@ -21,6 +21,66 @@ exports[`CoursePage Component should render correctly 1`] = `
       Add Course
     </button>
   </div>
-  <CourseList />
+  <table
+    className="table table-striped"
+  >
+    <thead>
+      <tr>
+        <th
+          scope="col"
+        >
+           
+        </th>
+        <th
+          scope="col"
+        >
+          Title
+        </th>
+        <th
+          scope="col"
+        >
+          Author
+        </th>
+        <th
+          scope="col"
+        >
+          Category
+        </th>
+        <th
+          scope="col"
+        >
+          Length
+        </th>
+        <th
+          scope="col"
+        >
+           
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <CourseList
+        course={
+          Object {
+            "authorId": "cory-house",
+            "category": "JavaScript",
+            "id": "react-flux-building-applications",
+            "length": "5:08",
+            "title": "Building Applications in React and Flux",
+            "watchHref": "http://www.pluralsight.com/courses/react-flux-building",
+          }
+        }
+        key="react-flux-building-applications"
+        showDeleteModal={[Function]}
+      />
+    </tbody>
+  </table>
+  <Modal
+    closeModal={[Function]}
+    deleteCourse={[Function]}
+    displayModal={false}
+    isDeleting={false}
+    modalContent={Object {}}
+  />
 </div>
 `;

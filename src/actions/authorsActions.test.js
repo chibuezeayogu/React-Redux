@@ -4,7 +4,9 @@ import nock from 'nock';
 
 import authorApi from '../api/mockCourseApi';
 import authors from '../test/__mocks__/mockAuthors';
-import * as types from './actionTypes';
+import {
+	LOAD_AUTHORS_SUCCESS
+} from './actionTypes';
 import {
 	loadAuthorsSuccess,
 	loadAuthors
@@ -17,7 +19,7 @@ describe('Author Actions', () => {
 	describe('loadAuthorsSuccess Action', () => {
 		it('should load all authors', () => {
 			const expectedAction = {
-				type: types.LOAD_AUTHORS_SUCCESS, authors
+				type: LOAD_AUTHORS_SUCCESS, authors
 			};
       
 			expect(loadAuthorsSuccess(authors)).toEqual(expectedAction);

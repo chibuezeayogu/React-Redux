@@ -1,13 +1,18 @@
-import * as types from '../actions/actionTypes';
-import initialState from './initialState';
+import {
+	LOAD_AUTHORS_SUCCESS
+} from '../actions/actionTypes';
+import { initialAuthors } from './initialState';
 
-const authorReducer = (state = initialState.authors, action) => {
+const authorsReducer = (state = initialAuthors, action) => {
 	switch (action.type) {
-	case types.LOAD_AUTHORS_SUCCESS:
-		return action.authors;
+	case LOAD_AUTHORS_SUCCESS:
+		return {
+			...state,
+			authors: action.authors
+		};
 	default:
 		return state;
 	}
 };
 
-export default authorReducer;
+export default authorsReducer;

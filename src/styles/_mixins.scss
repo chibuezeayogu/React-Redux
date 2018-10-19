@@ -1,0 +1,12 @@
+@mixin buttons($bg-color, $text-color, $btn-padding, $font-size, $border) {
+  background-color: $bg-color;
+  color: $text-color;
+  padding: $btn-padding;
+  font-size: $font-size;
+  border: $border;
+  font-family: $font-family-pro;
+  border-radius: px-to-rem(2px);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}

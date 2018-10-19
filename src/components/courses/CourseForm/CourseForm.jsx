@@ -10,13 +10,6 @@ const CourseForm = ({
 }) => (
 	<form>
 		<TextInput
-			name="id"
-			label="Course ID"
-			value={course.id}
-			onChange={onChange}
-			error={errors.id}/>
-
-		<TextInput
 			name="title"
 			label="Title"
 			value={course.title}
@@ -38,13 +31,6 @@ const CourseForm = ({
 			value={course.category}
 			onChange={onChange}
 			error={errors.category}/>
-		
-		<TextInput
-			name="watchHref"
-			label="Course Url"
-			value={course.watchHref}
-			onChange={onChange}
-			error={errors.watchHref}/>
 
 		<TextInput
 			name="length"
