@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import CoursesPage from '../../components/courses/ViewCourse/CoursesPage';
 import Header from '../common/Header/Header';
@@ -8,7 +8,7 @@ import AboutPage from '../about/AboutPage';
 import ManageCoursePage from '../courses/ManageCourse/ManageCourse';
 
 const App = () => (
-	<Router>
+	<BrowserRouter>
 		<Fragment>
 			<Header />
 			<div className="container">
@@ -19,7 +19,7 @@ const App = () => (
 				<Route exact path="/course/:id" component={ManageCoursePage} />
 			</div>
 		</Fragment>
-	</Router>
+	</BrowserRouter>
 );
 
 export default App;
