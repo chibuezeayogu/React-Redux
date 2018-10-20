@@ -9,7 +9,8 @@ import { render } from 'react-dom';
 
 import App from './components/app/App';
 import configureStore from './store/configureStore';
-import './styles/main.scss';
+import './styles/styles.scss';
+import 'toastr/build/toastr.min.css';
 import { loadCourses } from './actions/courseActions';
 import { loadAuthors } from './actions/authorActions';
 

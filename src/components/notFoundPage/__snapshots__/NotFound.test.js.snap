@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component should render correctly 1`] = `
+<div
+  className="card text-center not-found"
+>
+  <div
+    class="card-header"
+  />
+  <div
+    className="card-body"
+  >
+    <h2
+      className="card-title"
+    >
+      Page Not Found
+    </h2>
+  </div>
+  <div
+    className="card-footer text-muted"
+  />
+</div>
+`;

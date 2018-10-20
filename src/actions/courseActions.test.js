@@ -7,12 +7,14 @@ import courses from '../test/__mocks__/mockCourses';
 import {
 	LOAD_COURSES_SUCCESS,
 	UPDATE_COURSE_SUCCESS,
-	CREATE_COURSE_SUCCESS
+	CREATE_COURSE_SUCCESS,
+	DELETE_COURSE_SUCCESS,
 } from './actionTypes';
 import {
 	loadCoursesSuccess,
 	updateCourseSuccess,
 	createCourseSuccess,
+	deleteCourseSuccess,
 	loadCourses,
 	saveCourse
 } from './courseActions';
@@ -45,5 +47,14 @@ describe('Course Actions', () => {
 		};
     
 		expect(createCourseSuccess(courses[0])).toEqual(expectedAction);
+	});
+
+	it('should delete course when passed DELETE_COURSE_SUCCESS', () => {
+		const expectedAction = {
+			type: DELETE_COURSE_SUCCESS, 
+			courseId: courses[0].id
+		};
+    
+		expect(deleteCourseSuccess(courses[0].id)).toEqual(expectedAction);
 	});
 });
