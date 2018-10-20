@@ -30,13 +30,13 @@ exports[`CourseList Component should render correctly 1`] = `
     5:08
   </td>
   <td>
-    <span
+    <button
+      className="btn btn-danger"
       onClick={[Function]}
-      tabIndex={1}
       type="button"
     >
-      delete
-    </span>
+      Delete
+    </button>
   </td>
 </tr>
 `;

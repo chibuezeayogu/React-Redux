@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { array } from 'prop-types';
 import { connect } from 'react-redux';
 import Pagination from 'rc-pagination';
+import { BounceLoader } from 'react-spinners';
+
 
 import { deleteCourse } from '../../../actions/courseActions';
 import CourseList from './CourseList';
-import Modal from './Modal';
 import formatPagination from '../../../helpers/formatPagination';
 
 /**
@@ -55,35 +56,11 @@ export class CoursesPage extends Component {
 
 	/**
    * @memberof CoursePage
-	 * @param {object} courseDetails
-   * @returns {void}
-   */
-	showDeleteModal = (courseDetails) => {
-		this.setState(prev => ({
-			displayModal: !prev.displayModal,
-			modalContent: courseDetails
-		}));
-	}
-
-	/**
-   * @memberof CoursePage
 	 * @param {string} courseId
    * @returns {void}
    */
 	deleteCourse = (courseId) => {
-		Promise.resolve(this.props.deleteCourse(courseId))
-			.then(() => this.closeModal());
-	}
-
-	/**
-   * @memberof CoursePage
-	 * @param {object} courseDetails
-   * @returns {void}
-   */
-	closeModal = (courseDetails) => {
-		this.setState(prev => ({
-			displayModal: !prev.displayModal
-		}));
+		Promise.resolve(this.props.deleteCourse(courseId));
 	}
 
 	/**
@@ -112,41 +89,38 @@ export class CoursesPage extends Component {
 							Add Course
 					</button>
 				</div>
-				{courses.length === 0 ? ''
-					: <table className="table table-striped">
-						<thead>
-							<tr>
-								<th scope="col">&nbsp;</th>
-								<th scope="col">Title</th>
-								<th scope="col">Author</th>
-								<th scope="col">Category</th>
-								<th scope="col">Length</th>
-								<th scope="col">&nbsp;</th>
-							</tr>
-						</thead>
-						<tbody>
-							{courses.map(course => <CourseList 
-								key={course.id} 
-								course={course} 
-								showDeleteModal={this.showDeleteModal} 
-							/>
-							)}
-						</tbody>
-					</table>
+				{courses.length === 0 
+					? <p className="lead text-center">Course List is Empty. Add Course</p>
+					: <div>
+						<table className="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">&nbsp;</th>
+									<th scope="col">Title</th>
+									<th scope="col">Author</th>
+									<th scope="col">Category</th>
+									<th scope="col">Length</th>
+									<th scope="col">&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+								{courses.map(course => <CourseList 
+									key={course.id}
+									id={course.id}
+									course={course} 
+									deleteCourse={this.deleteCourse} 
+								/>
+								)}
+							</tbody>
+						</table>
+						<Pagination
+							onChange={this.handlePageChange}
+							current={currentPage}
+							pageSize={pageSize}
+							total={totalCount}
+						/>
+					</div>
 				}
-				<Modal 
-					closeModal={this.closeModal}
-					displayModal={displayModal}
-					isDeleting={this.state.isDeleting}
-					modalContent={modalContent}
-					deleteCourse={this.deleteCourse}
-				/>
-				<Pagination
-					onChange={this.handlePageChange}
-					current={currentPage}
-					pageSize={pageSize}
-					total={totalCount}
-				/>
 			</div>
 		);
 	}

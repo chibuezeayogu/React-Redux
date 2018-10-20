@@ -1,3 +1,0 @@
-@function px-to-rem($target, $context: $base-font-size) {
-  @return ($target / $context) * 1rem;
-}
