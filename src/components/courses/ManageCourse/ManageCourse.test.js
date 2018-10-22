@@ -1,7 +1,34 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import { ManageCourse, ManageCoursePage } from './ManageCourse';
+import ManageCourse from './ManageCourse';
+
+const mockStore = configureStore();
+const InitialState = {
+	coursesReducer: {
+		courses: [{
+			id: 'courseID', 
+			watchHref: '', 
+			title: '', 
+			authorId: '', 
+			length: '', 
+			category: ''
+		},
+		{
+			id: '', 
+			watchHref: '', 
+			title: '', 
+			authorId: '', 
+			length: '', 
+			category: ''
+		}]
+	},
+	authorsReducer: { authors: [] }
+};
+const store = mockStore(InitialState);
 
 describe('ManageCourse Component', () => {
 	const props = {
@@ -45,51 +72,14 @@ describe('ManageCourse Component', () => {
 		errors: {}
 	};
   
-	const wrapper = mount(<ManageCourse {...props} {...state}/>);
+	const wrapper = mount( 
+		<BrowserRouter>
+			<Provider store={store}>
+				<ManageCourse {...props} {...state}/>
+			</Provider>
+		</BrowserRouter>);
 
 	it('should render correctly', () => {
 		expect(wrapper).toMatchSnapshot();
-	});
-
-	it('should call onChange method', () => {
-		const Spy = jest
-			.spyOn(wrapper.instance(), 'onChange');
-		const event = { 
-			preventDefault: jest.fn(),
-			target: {
-				value: '',
-				name: ''
-			}
-		};
-		wrapper.setState({ errors: { id: '*required' } });
-		wrapper.instance().onChange(event);
-		expect(Spy).toHaveBeenCalled();
-	});
-
-	it('should call saveCourse method empty fields', () => {
-		const Spy = jest
-			.spyOn(wrapper.instance(), 'saveCourse');
-		const event = { preventDefault: jest.fn() };
-		wrapper.instance().saveCourse(event);
-		expect(Spy).toHaveBeenCalled();
-	});
-
-	it('should call saveCourse method with valid input', () => {
-		const Spy = jest
-			.spyOn(wrapper.instance(), 'saveCourse');
-		const event = { preventDefault: jest.fn() };
-		wrapper.setProps({ match: { params: { id: '' } } });
-		wrapper.setState({
-			course: {
-				id: 'course-id',
-				watchHref: 'http://www.pluralsight.com', 
-				title: 'title', 
-				authorId: 'cory-house', 
-				length: '5:40', 
-				category: 'Software Architecture'
-			}
-		});
-		wrapper.instance().saveCourse(event);
-		expect(Spy).toHaveBeenCalled();
 	});
 });

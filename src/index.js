@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
 import Popper from 'popper.js';

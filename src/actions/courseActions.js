@@ -32,11 +32,11 @@ export const loadCourses = () => dispatch => 	{
 	});
 };
 
-export const saveCourse = course => (dispatch, getState) => {
-	courseApi.saveCourse(course).then(savedCourse => {
+export const saveCourse = course => (dispatch, getState) => courseApi
+	.saveCourse(course).then(savedCourse => {
 		if (course.id) {
 			dispatch(updateCourseSuccess(savedCourse));
-			toastr.success('UpdatedSuccessfully');
+			toastr.success('Updated Successfully');
 		} else {
 			dispatch(createCourseSuccess(savedCourse));
 			toastr.success('Created Successfully');
@@ -44,7 +44,6 @@ export const saveCourse = course => (dispatch, getState) => {
 	}).catch(error => {
 		throw (error);
 	});
-};
 
 
 export const deleteCourse = (courseId) => dispatch => {
