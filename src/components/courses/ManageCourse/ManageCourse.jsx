@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { object, array, func } from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter, Prompt } from 'react-router-dom';
 
 import inputValidation from '../../../helpers/inputValidation';
 import { saveCourse } from '../../../actions/courseActions';
@@ -20,8 +21,11 @@ export class ManageCourse extends Component {
 			length: '', 
 			category: ''
 		},
+		hasUnsavedChanges: false,
+		loading: false,
 		errors: {}
 	})
+		
 
 	constructor(props) {
 		super(props);
@@ -57,7 +61,10 @@ export class ManageCourse extends Component {
 		}
 		course[event.target.name] = event.target.value;
 		
-		this.setState({ course });
+		this.setState({ 
+			course,
+			hasUnsavedChanges: true
+		});
 	}
   
 	/**
@@ -70,8 +77,11 @@ export class ManageCourse extends Component {
 		evt.preventDefault();
 		const err = inputValidation(this.state.course);
 		if (err.isEmpty) {
-			this.props.saveCourse(this.state.course);
-			this.props.history.push('/courses');
+			this.props.saveCourse(this.state.course)
+				.then(() => {
+					this.setState({ hasUnsavedChanges: false });
+					this.props.history.push('/courses');
+				});
 		} else {
 			this.setState({ errors: err.errors });
 		}
@@ -79,9 +89,15 @@ export class ManageCourse extends Component {
 
 	render() {
 		const authorsDropdown = formattedAuthorsDropdown(this.props.authors);
-
+		const {
+			hasUnsavedChanges, course, loading, errors 
+		} = this.state;
 		return (
 			<Fragment>
+				<Prompt
+					when={hasUnsavedChanges}
+					message="Your unsaved data will be lost"
+				/>
 				<div className="jumbotron">
 					<h1 className="display-4">Manage Course</h1>
 					<hr className="my-4"/>
@@ -90,8 +106,9 @@ export class ManageCourse extends Component {
 					allAuthors={authorsDropdown}
 					onChange={this.onChange}
 					onSave={this.saveCourse}
-					course={this.state.course}
-					errors={this.state.errors}/>
+					course={course}
+					errors={errors}/>
+					errors={loading}/>
 			</Fragment>
 		);
 	}

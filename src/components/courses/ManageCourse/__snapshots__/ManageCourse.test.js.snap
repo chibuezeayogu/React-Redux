@@ -1,235 +1,307 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ManageCourse Component should render correctly 1`] = `
-<ManageCourse
-  auhtors={Array []}
-  authors={
-    Array [
+<BrowserRouter>
+  <Router
+    history={
       Object {
-        "firstName": "Cory",
-        "id": "cory-house",
-        "lastName": "House",
-      },
-    ]
-  }
-  course={
-    Object {
-      "authorId": "cory-house",
-      "category": "Software Architecture",
-      "length": "5:40",
-      "title": "title",
-      "watchHref": "http://www.pluralsight.com",
-    }
-  }
-  courses={
-    Array [
-      Object {
-        "authorId": "",
-        "category": "",
-        "id": "courseID",
-        "length": "",
-        "title": "",
-        "watchHref": "",
-      },
-      Object {
-        "authorId": "",
-        "category": "",
-        "id": "",
-        "length": "",
-        "title": "",
-        "watchHref": "",
-      },
-    ]
-  }
-  errors={Object {}}
-  history={
-    Object {
-      "push": [MockFunction],
-    }
-  }
-  match={
-    Object {
-      "params": Object {
-        "id": "courseID",
-      },
-    }
-  }
-  saveCourse={[MockFunction]}
->
-  <div
-    className="jumbotron"
-  >
-    <h1
-      className="display-4"
-    >
-      Manage Course
-    </h1>
-    <hr
-      className="my-4"
-    />
-  </div>
-  <CourseForm
-    allAuthors={
-      Array [
-        Object {
-          "text": "Cory House",
-          "value": "cory-house",
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
         },
-      ]
-    }
-    course={
-      Object {
-        "authorId": "",
-        "category": "",
-        "id": "courseID",
-        "length": "",
-        "title": "",
-        "watchHref": "",
+        "push": [Function],
+        "replace": [Function],
       }
     }
-    errors={Object {}}
-    onChange={[Function]}
-    onSave={[Function]}
   >
-    <form>
-      <TextInput
-        label="Title"
-        name="title"
-        onChange={[Function]}
-        value=""
-      >
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="title"
-          >
-            Title
-             
-          </label>
-          <div
-            className="field"
-          >
-            <input
-              className="form-control"
-              name="title"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
-          </div>
-        </div>
-      </TextInput>
-      <SelectInput
-        defaultOption="Select Author"
-        label="Author"
-        name="authorId"
-        onChange={[Function]}
-        options={
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Connect(ManageCourse)
+        auhtors={Array []}
+        authors={
           Array [
             Object {
-              "text": "Cory House",
-              "value": "cory-house",
+              "firstName": "Cory",
+              "id": "cory-house",
+              "lastName": "House",
             },
           ]
         }
-        value=""
+        course={
+          Object {
+            "authorId": "cory-house",
+            "category": "Software Architecture",
+            "length": "5:40",
+            "title": "title",
+            "watchHref": "http://www.pluralsight.com",
+          }
+        }
+        courses={
+          Array [
+            Object {
+              "authorId": "",
+              "category": "",
+              "id": "courseID",
+              "length": "",
+              "title": "",
+              "watchHref": "",
+            },
+            Object {
+              "authorId": "",
+              "category": "",
+              "id": "",
+              "length": "",
+              "title": "",
+              "watchHref": "",
+            },
+          ]
+        }
+        errors={Object {}}
+        history={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        match={
+          Object {
+            "params": Object {
+              "id": "courseID",
+            },
+          }
+        }
+        saveCourse={[MockFunction]}
       >
-        <div
-          className="form-group"
+        <ManageCourse
+          auhtors={Array []}
+          authors={Array []}
+          course={
+            Object {
+              "authorId": "cory-house",
+              "category": "Software Architecture",
+              "length": "5:40",
+              "title": "title",
+              "watchHref": "http://www.pluralsight.com",
+            }
+          }
+          courses={
+            Array [
+              Object {
+                "authorId": "",
+                "category": "",
+                "id": "courseID",
+                "length": "",
+                "title": "",
+                "watchHref": "",
+              },
+              Object {
+                "authorId": "",
+                "category": "",
+                "id": "",
+                "length": "",
+                "title": "",
+                "watchHref": "",
+              },
+            ]
+          }
+          errors={Object {}}
+          history={
+            Object {
+              "push": [MockFunction],
+            }
+          }
+          match={
+            Object {
+              "params": Object {
+                "id": "courseID",
+              },
+            }
+          }
+          saveCourse={[Function]}
         >
-          <label
-            htmlFor="authorId"
-          >
-            Author
-          </label>
+          <Prompt
+            message="Your unsaved data will be lost"
+            when={false}
+          />
           <div
-            className="field"
+            className="jumbotron"
           >
-            <select
-              className="form-control"
-              name="authorId"
-              onChange={[Function]}
-              value=""
+            <h1
+              className="display-4"
             >
-              <option
+              Manage Course
+            </h1>
+            <hr
+              className="my-4"
+            />
+          </div>
+          <CourseForm
+            allAuthors={Array []}
+            course={
+              Object {
+                "authorId": "",
+                "category": "",
+                "id": "courseID",
+                "length": "",
+                "title": "",
+                "watchHref": "",
+              }
+            }
+            errors={Object {}}
+            onChange={[Function]}
+            onSave={[Function]}
+          >
+            <form>
+              <TextInput
+                label="Title"
+                name="title"
+                onChange={[Function]}
                 value=""
               >
-                Select Author
-              </option>
-              <option
-                key="cory-house"
-                value="cory-house"
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="title"
+                  >
+                    Title
+                     
+                  </label>
+                  <div
+                    className="field"
+                  >
+                    <input
+                      className="form-control"
+                      name="title"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </TextInput>
+              <SelectInput
+                defaultOption="Select Author"
+                label="Author"
+                name="authorId"
+                onChange={[Function]}
+                options={Array []}
+                value=""
               >
-                Cory House
-              </option>
-            </select>
-          </div>
-        </div>
-      </SelectInput>
-      <TextInput
-        label="Category"
-        name="category"
-        onChange={[Function]}
-        value=""
-      >
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="category"
-          >
-            Category
-             
-          </label>
-          <div
-            className="field"
-          >
-            <input
-              className="form-control"
-              name="category"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
-          </div>
-        </div>
-      </TextInput>
-      <TextInput
-        label="Length"
-        name="length"
-        onChange={[Function]}
-        value=""
-      >
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="length"
-          >
-            Length
-             
-          </label>
-          <div
-            className="field"
-          >
-            <input
-              className="form-control"
-              name="length"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
-          </div>
-        </div>
-      </TextInput>
-      <button
-        className="btn btn-primary"
-        onClick={[Function]}
-      >
-        Save
-      </button>
-    </form>
-  </CourseForm>
-</ManageCourse>
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="authorId"
+                  >
+                    Author
+                  </label>
+                  <div
+                    className="field"
+                  >
+                    <select
+                      className="form-control"
+                      name="authorId"
+                      onChange={[Function]}
+                      value=""
+                    >
+                      <option
+                        value=""
+                      >
+                        Select Author
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </SelectInput>
+              <TextInput
+                label="Category"
+                name="category"
+                onChange={[Function]}
+                value=""
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="category"
+                  >
+                    Category
+                     
+                  </label>
+                  <div
+                    className="field"
+                  >
+                    <input
+                      className="form-control"
+                      name="category"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </TextInput>
+              <TextInput
+                label="Length"
+                name="length"
+                onChange={[Function]}
+                value=""
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="length"
+                  >
+                    Length
+                     
+                  </label>
+                  <div
+                    className="field"
+                  >
+                    <input
+                      className="form-control"
+                      name="length"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </TextInput>
+              <button
+                className="btn btn-primary"
+                onClick={[Function]}
+              >
+                Save
+              </button>
+            </form>
+          </CourseForm>
+          errors=
+          /&gt;
+        </ManageCourse>
+      </Connect(ManageCourse)>
+    </Provider>
+  </Router>
+</BrowserRouter>
 `;
