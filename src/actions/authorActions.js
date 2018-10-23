@@ -5,10 +5,9 @@ export const loadAuthorsSuccess = authors => ({
 	type: LOAD_AUTHORS_SUCCESS, authors
 });
 
-export const loadAuthors = () => dispatch => {
-	authorApi.getAllAuthors().then(authors => {
+export const loadAuthors = () => dispatch => authorApi
+	.getAllAuthors().then(authors => {
 		dispatch(loadAuthorsSuccess(authors));
 	}).catch(error => {
 		throw (error);
 	});
-};

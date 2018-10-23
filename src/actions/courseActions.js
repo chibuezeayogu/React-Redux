@@ -5,11 +5,16 @@ import {
 	UPDATE_COURSE_SUCCESS,
 	CREATE_COURSE_SUCCESS,
 	DELETE_COURSE_SUCCESS,
+	ISLOADING_COURSES,
 } from './actionTypes';
 import courseApi, { generateId } from '../api/mockCourseApi';
 
 export const loadCoursesSuccess = courses => ({ 
 	type: LOAD_COURSES_SUCCESS, courses 
+});
+export const isLoadingCourses = status => ({ 
+	type: ISLOADING_COURSES,
+	status
 });
 
 export const updateCourseSuccess = course => ({ 
@@ -25,9 +30,12 @@ export const deleteCourseSuccess = courseId => ({
 });
 
 export const loadCourses = () => dispatch => 	{
-	courseApi.getAllCourses().then(courses => {
+	dispatch(isLoadingCourses(true));
+	return courseApi.getAllCourses().then(courses => {
 		dispatch(loadCoursesSuccess(courses));
+		dispatch(isLoadingCourses(false));
 	}).catch(error => {
+		dispatch(isLoadingCourses(false));
 		throw (error);
 	});
 };
@@ -46,11 +54,10 @@ export const saveCourse = course => (dispatch, getState) => courseApi
 	});
 
 
-export const deleteCourse = (courseId) => dispatch => {
-	courseApi.deleteCourse(courseId).then(() => {
+export const deleteCourse = (courseId) => dispatch => courseApi
+	.deleteCourse(courseId).then(() => {
 		dispatch(deleteCourseSuccess(courseId));
 		toastr.success('Deleted Successfully');
 	}).catch(error => {
 		throw (error);
 	});
-};
