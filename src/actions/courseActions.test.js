@@ -9,6 +9,7 @@ import {
 	UPDATE_COURSE_SUCCESS,
 	CREATE_COURSE_SUCCESS,
 	DELETE_COURSE_SUCCESS,
+	ISLOADING_COURSES
 } from './actionTypes';
 import {
 	loadCoursesSuccess,
@@ -56,5 +57,33 @@ describe('Course Actions', () => {
 		};
     
 		expect(deleteCourseSuccess(courses[0].id)).toEqual(expectedAction);
+	});
+});
+
+describe('Async Actions', () => {
+	afterEach(() => {
+		nock.cleanAll();
+	});
+	it('', (done) => {
+		const expectedActions = [
+			{
+				type: ISLOADING_COURSES,
+				status: true
+			},
+			{
+				type: LOAD_COURSES_SUCCESS,
+				body: { courses }
+			},
+			{
+				type: ISLOADING_COURSES,
+				status: false
+			},
+		];
+		const store = mockStore({ course: [], expectedActions });
+		store.dispatch(loadCourses())
+			.then(() => {
+				expect(store.getActions()).toEqual(expectedActions);
+			});
+		done();
 	});
 });

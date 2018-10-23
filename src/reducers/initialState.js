@@ -3,7 +3,8 @@ const initialAuthors = {
 };
 
 const initialCourses = {
-	courses: []
+	courses: [],
+	isLoading: false
 };
 
 export {

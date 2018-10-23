@@ -26,7 +26,11 @@ const InitialState = {
 			category: ''
 		}]
 	},
-	authorsReducer: { authors: [] }
+	authorsReducer: { 
+    authors: [{id: 'cory-house',
+    firstName: 'Cory',
+    lastName: 'House'}] 
+  }
 };
 const store = mockStore(InitialState);
 

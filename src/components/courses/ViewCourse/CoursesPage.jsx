@@ -3,11 +3,18 @@ import { array } from 'prop-types';
 import { connect } from 'react-redux';
 import Pagination from 'rc-pagination';
 import { BounceLoader } from 'react-spinners';
+import { css } from 'react-emotion';
 
 
 import { deleteCourse } from '../../../actions/courseActions';
 import CourseList from './CourseList';
 import formatPagination from '../../../helpers/formatPagination';
+
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
 
 /**
  * @class CoursePage
@@ -32,7 +39,7 @@ export class CoursesPage extends Component {
 	static getDerivedStateFromProps(nextProps, nextState) {
 		const current = Number(nextProps.location.search.slice(6));
 		let Output = {};
-		if (nextProps.courses.length > 0) {
+		if (nextProps.courses.length >= 0) {
 			Output = formatPagination(nextProps.courses, current);
 			return {
 				...CoursesPage.initialState(),
@@ -60,36 +67,16 @@ export class CoursesPage extends Component {
    * @returns {void}
    */
 	deleteCourse = (courseId) => {
-		Promise.resolve(this.props.deleteCourse(courseId));
+		this.props.deleteCourse(courseId);
 	}
 
-	/**
-   * @memberof CoursePage
-	 * @param {object} current
-	 * @param {object} pageSize
-   * @returns {void}
-   */
-	handlePageChange = (current) => {
-		this.props.history.push(`/courses?page=${current}`);
-	}
-
-	render() {
+	renderCourses = () => {
 		const {
 			displayModal, modalContent, courses, pageSize, totalCount, currentPage
 		} = this.state;
-
 		return (
 			<div>
-				<div className="jumbotron">
-					<h1 className="display-4">Courses Page</h1>
-					<hr className="my-4"/>
-					<button type="button"
-						className="btn btn-primary"
-						onClick={this.redirectToAddCoursePage}>
-							Add Course
-					</button>
-				</div>
-				{courses.length === 0 
+				{courses && courses.length === 0 
 					? <p className="lead text-center">Course List is Empty. Add Course</p>
 					: <div>
 						<table className="table table-striped">
@@ -124,6 +111,45 @@ export class CoursesPage extends Component {
 			</div>
 		);
 	}
+
+	/**
+   * @memberof CoursePage
+	 * @param {object} current
+	 * @param {object} pageSize
+   * @returns {void}
+   */
+	handlePageChange = (current) => {
+		this.props.history.push(`/courses?page=${current}`);
+	}
+
+	render() {
+		const { isLoading } = this.props;
+
+		return (
+			<div>
+				<div className="jumbotron">
+					<h1 className="display-4">Courses Page</h1>
+					<hr className="my-4"/>
+					<button type="button"
+						className="btn btn-primary"
+						onClick={this.redirectToAddCoursePage}>
+						Add Course
+					</button>
+				</div>
+				{ isLoading
+					? <div className="sweet-loading">
+						<BounceLoader
+							className={override}
+							sizeUnit={'px'}
+							size={150}
+							color={'#123abc'}
+							loading={true}
+						/>
+					</div> : this.renderCourses()
+				}
+			</div>
+		);
+	}
 }
 
 CoursesPage.propTypes = {
@@ -131,7 +157,8 @@ CoursesPage.propTypes = {
 };
 
 const mapStateToProps = ({ coursesReducer }) => ({
-	courses: coursesReducer.courses
+	courses: coursesReducer.courses,
+	isLoading: coursesReducer.isLoading
 });
 
 export default connect(

@@ -76,14 +76,18 @@ export class ManageCourse extends Component {
 	saveCourse = (evt) => {
 		evt.preventDefault();
 		const err = inputValidation(this.state.course);
-		if (err.isEmpty) {
+		if (!err.isEmpty) {
+			this.setState({ errors: err.errors });
+		} else {
+			this.setState({ loading: true });
 			this.props.saveCourse(this.state.course)
 				.then(() => {
-					this.setState({ hasUnsavedChanges: false });
+					this.setState({ 
+						hasUnsavedChanges: false,
+						loading: false
+					});
 					this.props.history.push('/courses');
 				});
-		} else {
-			this.setState({ errors: err.errors });
 		}
 	}
 
@@ -107,8 +111,8 @@ export class ManageCourse extends Component {
 					onChange={this.onChange}
 					onSave={this.saveCourse}
 					course={course}
-					errors={errors}/>
-					errors={loading}/>
+					errors={errors}
+					loading={loading}/>
 			</Fragment>
 		);
 	}

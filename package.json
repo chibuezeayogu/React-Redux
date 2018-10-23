@@ -5,7 +5,7 @@
   "repository": "https://github.com/chibuezeayogu/React-Redux.git",
   "scripts": {
     "dev": "webpack-dev-server --mode development --hot --open --no-ignore",
-    "build": "rm -rf ./dist && webpack --mode=production && babel --present env server.js -d dist/",
+    "build": "rm -rf ./dist && webpack --mode production && babel --present env server.js -d dist/",
     "heroku-postbuild": "yarn run build",
     "start": "node dist/server.js",
     "lint": "esw webpack.config.* src --color",
@@ -31,6 +31,7 @@
     "rc-pagination": "^1.17.3",
     "react": "16.5.2",
     "react-dom": "16.5.2",
+    "react-emotion": "^9.2.12",
     "react-paginate": "5.2.4",
     "react-redux": "5.0.7",
     "react-router-dom": "4.3.1",

@@ -36,4 +36,10 @@ describe('CoursePage Component', () => {
 		wrapper.instance().deleteCourse();
 		expect(deleteVendorSpy).toHaveBeenCalled();
 	});
+	
+	it('should call handlePageChange method', () => {
+		const spy = jest.spyOn(wrapper.instance(), 'handlePageChange');
+		wrapper.instance().handlePageChange();
+		expect(spy).toHaveBeenCalled();
+	});
 });

@@ -4,6 +4,7 @@ import {
 	CREATE_COURSE_SUCCESS,
 	UPDATE_COURSE_SUCCESS,
 	DELETE_COURSE_SUCCESS,
+	ISLOADING_COURSES
 } from '../actions/actionTypes';
 import { initialCourses } from './initialState';
 
@@ -15,6 +16,11 @@ const coursesReducer = (state = initialCourses, action) => {
 		return {
 			...state,
 			courses: _.sortBy(action.courses, ['title'])
+		};
+	case ISLOADING_COURSES:
+		return {
+			...state,
+			isLoading: action.status,
 		};
 	case CREATE_COURSE_SUCCESS:
 		return {
