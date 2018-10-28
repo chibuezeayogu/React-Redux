@@ -27,10 +27,12 @@ const InitialState = {
 		}]
 	},
 	authorsReducer: { 
-    authors: [{id: 'cory-house',
-    firstName: 'Cory',
-    lastName: 'House'}] 
-  }
+		authors: [{ 
+			id: 'cory-house',
+			firstName: 'Cory',
+			lastName: 'House'
+		}] 
+	}
 };
 const store = mockStore(InitialState);
 

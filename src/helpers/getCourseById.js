@@ -1,7 +1,7 @@
-const getCourseById = (courses, courseId) => {
-	const foundCourse = courses.find(course => course.id === courseId);
-	if (foundCourse) return foundCourse;
+const getById = (states, id) => {
+	const foundItem = states.find(state => state.id === id);
+	if (foundItem) return foundItem;
 	return null;
 };
 
-export default getCourseById;
+export default getById;

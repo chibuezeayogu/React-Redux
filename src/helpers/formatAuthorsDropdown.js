@@ -1,5 +1,3 @@
-
-
 const formattedAuthorsDropdown = (authors) => (
 	authors.map(author => ({
 		value: author.id,

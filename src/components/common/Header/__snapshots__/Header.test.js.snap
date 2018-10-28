@@ -10,7 +10,7 @@ exports[`Header Component should render correctly 1`] = `
     <a
       className="navbar-brand"
     >
-      Navbar
+      PS
     </a>
     <button
       aria-controls="navbarNav"
@@ -52,6 +52,19 @@ exports[`Header Component should render correctly 1`] = `
           to="/courses"
         >
           Courses 
+          <span
+            className="badge badge-info"
+          >
+            1
+          </span>
+        </NavLink>
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-item nav-link"
+          to="/authors"
+        >
+          Authors 
           <span
             className="badge badge-info"
           >

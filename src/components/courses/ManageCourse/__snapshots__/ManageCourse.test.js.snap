@@ -96,19 +96,19 @@ exports[`ManageCourse Component should render correctly 1`] = `
           authors={
             Array [
               Object {
-                "firstName": "Cory",
-                "id": "cory-house",
-                "lastName": "House",
+                "text": "Cory House",
+                "value": "cory-house",
               },
             ]
           }
           course={
             Object {
-              "authorId": "cory-house",
-              "category": "Software Architecture",
-              "length": "5:40",
-              "title": "title",
-              "watchHref": "http://www.pluralsight.com",
+              "authorId": "",
+              "category": "",
+              "id": "courseID",
+              "length": "",
+              "title": "",
+              "watchHref": "",
             }
           }
           courses={
@@ -158,9 +158,6 @@ exports[`ManageCourse Component should render correctly 1`] = `
             >
               Manage Course
             </h1>
-            <hr
-              className="my-4"
-            />
           </div>
           <CourseForm
             allAuthors={

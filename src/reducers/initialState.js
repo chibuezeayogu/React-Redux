@@ -1,5 +1,6 @@
 const initialAuthors = {
-	authors: []
+	authors: [],
+	isLoading: false
 };
 
 const initialCourses = {

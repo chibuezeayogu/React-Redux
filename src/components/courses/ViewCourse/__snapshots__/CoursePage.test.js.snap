@@ -10,9 +10,6 @@ exports[`CoursePage Component should render correctly 1`] = `
     >
       Courses Page
     </h1>
-    <hr
-      className="my-4"
-    />
     <button
       className="btn btn-primary"
       onClick={[Function]}

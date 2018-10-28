@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {
 	LOAD_COURSES_SUCCESS,
 	CREATE_COURSE_SUCCESS,
@@ -9,13 +8,12 @@ import {
 import { initialCourses } from './initialState';
 
 let index;
-
 const coursesReducer = (state = initialCourses, action) => {
 	switch (action.type) {
 	case LOAD_COURSES_SUCCESS:
 		return {
 			...state,
-			courses: _.sortBy(action.courses, ['title'])
+			courses: action.courses
 		};
 	case ISLOADING_COURSES:
 		return {
@@ -25,7 +23,7 @@ const coursesReducer = (state = initialCourses, action) => {
 	case CREATE_COURSE_SUCCESS:
 		return {
 			...state,
-			courses: _.sortBy([...state.courses, action.course], ['title'])
+			courses: [...state.courses, action.course]
 		};
 	case UPDATE_COURSE_SUCCESS:
 		index = state.courses.findIndex(course => course.id === action.course.id);

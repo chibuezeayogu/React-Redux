@@ -17,6 +17,7 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
+      filename: 'index.html',
       inject: 'body',
 
     }),
@@ -60,9 +61,15 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|png|svg|jpg|gif)$/,
-        use: [
-        'file-loader',
-        'url-loader'
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            fallback: 'file-loader',
+            outputPath: '/assets/fonts',
+            name: '[name].[ext]?hash=[hash]',
+          },
+        },
         ]
       },
 			{
