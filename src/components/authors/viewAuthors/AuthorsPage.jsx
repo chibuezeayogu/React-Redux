@@ -7,8 +7,8 @@ import { BounceLoader } from 'react-spinners';
 import { css } from 'react-emotion';
 
 
-import { deleteCourse, loadCourses } from '../../../actions/courseActions';
-import CourseList from './CourseList';
+import { loadAuthors, deleteAuthor } from '../../../actions/authorActions';
+import AuthorList from './AuthorList';
 import formatPagination from '../../../helpers/formatPagination';
 
 const override = css`
@@ -18,32 +18,25 @@ const override = css`
 `;
 
 /**
- * @class CoursePage
+ * @class AuthorsPage
  * @extends Component
  */
-export class CoursesPage extends Component {
+export class AuthorsPage extends Component {
 	static initialState = () => ({
 		isDeleting: false,
-		courses: [],
-		pageSize: '',
-		totalCount: '',
-		currentPage: 1,
+		authors: [],
 	})
 
-	constructor(props) {
-		super(props);
-
-		this.state = CoursesPage.initialState();
-	}
+	state = AuthorsPage.initialState();
 
 	static getDerivedStateFromProps(nextProps, nextState) {
 		const { currentPage } = nextState;
 		let Output = {};
-		if (nextProps.courses.length > 0) {
-			Output = formatPagination(nextProps.courses, currentPage);
+		if (nextProps.authors.length >= 0) {
+			Output = formatPagination(nextProps.authors, currentPage);
 			return {
-				...CoursesPage.initialState(),
-				courses: Output.state,
+				...AuthorsPage.initialState(),
+				authors: Output.state,
 				pageSize: Output.pageSize,
 				totalCount: Output.totalCount,
 				currentPage: Output.currentPage
@@ -53,49 +46,52 @@ export class CoursesPage extends Component {
 		return null;
 	}
 
+	// componentDidMount() {
+	// 	const { authors } = this.props;
+	// 	this.setState({ authors });
+	// }
+
 	/**
-   * @memberof CoursePage
+   * @memberof AuthorsPage
    * @returns {void}
    */
-	redirectToAddCoursePage = () => {
-		this.props.history.push('/course');
+	redirectToAddAuthorsPage = () => {
+		this.props.history.push('/author');
 	}
 
 	/**
-   * @memberof CoursePage
-	 * @param {string} courseId
+   * @memberof AuthorsPage
+	 * @param {string} authorId
    * @returns {void}
    */
-	deleteCourse = (courseId) => {
-		this.props.deleteCourse(courseId);
+	deleteAuthor = (authorId) => {
+		this.props.deleteAuthor(authorId);
 	}
 
-	renderCourses = () => {
+	renderAuthors = () => {
 		const {
-			courses, pageSize, totalCount, currentPage
+			authors, pageSize, totalCount, currentPage 
 		} = this.state;
 		return (
 			<div>
-				{courses && courses.length === 0 
-					? <p className="lead text-center">Course List is Empty. Add Course</p>
+				{authors && authors.length === 0 
+					? <p className="lead text-center">Authors List is Empty. Add Author</p>
 					: <div>
 						<table className="table table-striped">
 							<thead>
 								<tr>
-									<th scope="col">&nbsp;</th>
-									<th scope="col">Title</th>
-									<th scope="col">Author</th>
-									<th scope="col">Category</th>
-									<th scope="col">Length</th>
+									<th scope="col">S/N</th>
+									<th scope="col">First Name</th>
+									<th scope="col">Last Name</th>
 									<th scope="col">&nbsp;</th>
 								</tr>
 							</thead>
 							<tbody>
-								{courses.map(course => <CourseList 
-									key={course.id}
-									id={course.id}
-									course={course} 
-									deleteCourse={this.deleteCourse} 
+								{authors.map(author => <AuthorList 
+									key={author.id}
+									id={author.id}
+									author={author} 
+									deleteAuthor={this.deleteAuthor} 
 								/>
 								)}
 							</tbody>
@@ -113,7 +109,7 @@ export class CoursesPage extends Component {
 	}
 
 	/**
-   * @memberof CoursePage
+   * @memberof AuthorsPage
 	 * @param {object} currentPage
 	 * @param {object} pageSize
    * @returns {void}
@@ -129,11 +125,11 @@ export class CoursesPage extends Component {
 		return (
 			<div>
 				<div className="jumbotron">
-					<h1 className="display-4">Courses Page</h1>
+					<h1 className="display-4">Authors Page</h1>
 					<button type="button"
 						className="btn btn-primary"
-						onClick={this.redirectToAddCoursePage}>
-						Add Course
+						onClick={this.redirectToAddAuthorsPage}>
+						Add Author
 					</button>
 				</div>
 				{ isLoading
@@ -145,26 +141,26 @@ export class CoursesPage extends Component {
 							color={'#123abc'}
 							loading={true}
 						/>
-					</div> : this.renderCourses()
+					</div> : this.renderAuthors()
 				}
 			</div>
 		);
 	}
 }
 
-CoursesPage.propTypes = {
-	courses: array.isRequired
+AuthorsPage.propTypes = {
+	authors: array.isRequired
 };
 
-const mapStateToProps = ({ coursesReducer }) => ({
-	courses: _.sortBy(coursesReducer.courses, ['title']),
-	isLoading: coursesReducer.isLoading
+const mapStateToProps = ({ authorsReducer }) => ({
+	authors: authorsReducer.authors,
+	isLoading: authorsReducer.isLoading
 });
 
 export default connect(
 	mapStateToProps,
 	{ 
-		deleteCourse,
-		loadCourses
+		loadAuthors,
+		deleteAuthor
 	}
-)(CoursesPage);
+)(AuthorsPage);

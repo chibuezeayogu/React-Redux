@@ -1,7 +1,7 @@
 const inputValidation = (formFields) => {
 	const errors = {};
 	Object.entries(formFields).forEach(([key, value]) => {
-		if (value.toString().trim() === '' && key !== 'id') {
+		if (value.toString().trim() === '' && key !== 'id' && key !== 'watchHref') {
 			errors[key] = '*required';
 		}
 	});

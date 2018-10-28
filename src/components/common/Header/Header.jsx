@@ -13,7 +13,7 @@ export class Header extends Component {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
 				<div className="container">
-					<a className="navbar-brand">Navbar</a>
+					<a className="navbar-brand">PS</a>
 					<button
 						className="navbar-toggler" 
 						type="button" 
@@ -40,6 +40,12 @@ export class Header extends Component {
 								className="nav-item nav-link"
 							>
 									Courses <span className="badge badge-info">{courses.length}</span>
+							</NavLink>
+							<NavLink to="/authors"
+								activeClassName="active"
+								className="nav-item nav-link"
+							>
+									Authors <span className="badge badge-info">{authors.length}</span>
 							</NavLink>
 							<NavLink
 								to="/about"

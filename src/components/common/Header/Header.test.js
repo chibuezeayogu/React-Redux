@@ -13,6 +13,11 @@ describe('Header Component', () => {
 			authorId: 'cory-house',
 			length: '5:08',
 			category: 'JavaScript'
+		}],
+		authors: [{
+			id: 'chibueze-ayogu',
+			firstName: 'Chibueze',
+			lastName: 'Ayogu'
 		}]
 	};
 

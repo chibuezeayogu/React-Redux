@@ -18,7 +18,7 @@ export const isLoadingCourses = status => ({
 });
 
 export const updateCourseSuccess = course => ({ 
-	type: UPDATE_COURSE_SUCCESS, course 
+	type: UPDATE_COURSE_SUCCESS, course
 });
 
 export const createCourseSuccess = course => ({
@@ -31,13 +31,15 @@ export const deleteCourseSuccess = courseId => ({
 
 export const loadCourses = () => dispatch => 	{
 	dispatch(isLoadingCourses(true));
-	return courseApi.getAllCourses().then(courses => {
-		dispatch(loadCoursesSuccess(courses));
-		dispatch(isLoadingCourses(false));
-	}).catch(error => {
-		dispatch(isLoadingCourses(false));
-		throw (error);
-	});
+	return courseApi
+		.getAllCourses()
+		.then(courses => {
+			dispatch(loadCoursesSuccess(courses));
+			dispatch(isLoadingCourses(false));
+		}).catch(error => {
+			dispatch(isLoadingCourses(false));
+			throw (error);
+		});
 };
 
 export const saveCourse = course => (dispatch, getState) => courseApi

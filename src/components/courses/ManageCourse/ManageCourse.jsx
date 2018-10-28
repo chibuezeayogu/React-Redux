@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { object, array, func } from 'prop-types';
+import { array, func, shape } from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Prompt } from 'react-router-dom';
 
 import inputValidation from '../../../helpers/inputValidation';
 import { saveCourse } from '../../../actions/courseActions';
 import CourseForm from '../CourseForm/CourseForm';
-import getCourseById from '../../../helpers/getCourseById';
+import getById from '../../../helpers/getCourseById';
 import formattedAuthorsDropdown from '../../../helpers/formatAuthorsDropdown';
 
 /**
@@ -16,36 +16,30 @@ import formattedAuthorsDropdown from '../../../helpers/formatAuthorsDropdown';
 export class ManageCourse extends Component {
 	static initialState = () => ({
 		course: { 
-			title: '', 
-			authorId: '', 
-			length: '', 
-			category: ''
+			id: '',
+			title: '',
+			length: '',
+			authorId: '',
+			category: '',
+			watchHref: '',
 		},
 		hasUnsavedChanges: false,
 		loading: false,
 		errors: {}
 	})
-		
-
-	constructor(props) {
-		super(props);
-    
-		this.state = ManageCourse.initialState();
-	}
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
-		const courseId = nextProps.match.params.id;
-
-		if (courseId && nextProps.courses.length > 0) {
+		if (nextProps.course.id && !prevState.course.id) {
 			return {
 				...ManageCourse.initialState(),
-				course: getCourseById(nextProps.courses, courseId),
-	
+				course: nextProps.course
 			};
 		}
 		
 		return null;
 	}
+	
+	state = ManageCourse.initialState();
 
 	/**
    * 
@@ -92,10 +86,11 @@ export class ManageCourse extends Component {
 	}
 
 	render() {
-		const authorsDropdown = formattedAuthorsDropdown(this.props.authors);
+		const { authors } = this.props;
 		const {
 			hasUnsavedChanges, course, loading, errors 
 		} = this.state;
+
 		return (
 			<Fragment>
 				<Prompt
@@ -104,10 +99,9 @@ export class ManageCourse extends Component {
 				/>
 				<div className="jumbotron">
 					<h1 className="display-4">Manage Course</h1>
-					<hr className="my-4"/>
 				</div>
 				<CourseForm
-					allAuthors={authorsDropdown}
+					allAuthors={authors}
 					onChange={this.onChange}
 					onSave={this.saveCourse}
 					course={course}
@@ -119,15 +113,27 @@ export class ManageCourse extends Component {
 }
 
 ManageCourse.propTypes = {
-	courses: array.isRequired,
+	course: shape({}).isRequired,
 	authors: array.isRequired,
 	saveCourse: func.isRequired
 };
 
 
-const mapStateToProps = ({ coursesReducer, authorsReducer }) => ({
-	courses: coursesReducer.courses,
-	authors: authorsReducer.authors
-});
+const mapStateToProps = ({ coursesReducer, authorsReducer }, props) => {
+	const { id } = props.match.params;
+	let course = ManageCourse.initialState();
 
-export default connect(mapStateToProps, { saveCourse })(ManageCourse);
+	if (id && coursesReducer.courses.length > 0) {
+		course = Object.assign({}, getById(coursesReducer.courses, id));
+	}
+
+	return {
+		course,
+		authors: formattedAuthorsDropdown(authorsReducer.authors)
+	};
+};
+
+export default
+connect(mapStateToProps,
+	{ saveCourse }
+)(ManageCourse);
