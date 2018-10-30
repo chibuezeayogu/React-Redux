@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Pagination from 'rc-pagination';
 import { BounceLoader } from 'react-spinners';
 import { css } from 'react-emotion';
+import toastr from 'toastr';
 
 
 import { loadAuthors, deleteAuthor } from '../../../actions/authorActions';
@@ -46,16 +47,11 @@ export class AuthorsPage extends Component {
 		return null;
 	}
 
-	// componentDidMount() {
-	// 	const { authors } = this.props;
-	// 	this.setState({ authors });
-	// }
-
 	/**
    * @memberof AuthorsPage
    * @returns {void}
    */
-	redirectToAddAuthorsPage = () => {
+	redirectToAddAuthorPage = () => {
 		this.props.history.push('/author');
 	}
 
@@ -65,7 +61,13 @@ export class AuthorsPage extends Component {
    * @returns {void}
    */
 	deleteAuthor = (authorId) => {
-		this.props.deleteAuthor(authorId);
+		const { courses } = this.props;
+		const id = courses.findIndex(course => course.authorId === authorId);
+		if (id === -1) {
+			this.props.deleteAuthor(authorId);
+		} else {
+			toastr.error('can\'t delete author with a course');
+		}
 	}
 
 	renderAuthors = () => {
@@ -128,7 +130,7 @@ export class AuthorsPage extends Component {
 					<h1 className="display-4">Authors Page</h1>
 					<button type="button"
 						className="btn btn-primary"
-						onClick={this.redirectToAddAuthorsPage}>
+						onClick={this.redirectToAddAuthorPage}>
 						Add Author
 					</button>
 				</div>
@@ -152,9 +154,10 @@ AuthorsPage.propTypes = {
 	authors: array.isRequired
 };
 
-const mapStateToProps = ({ authorsReducer }) => ({
+const mapStateToProps = ({ authorsReducer, coursesReducer }) => ({
 	authors: authorsReducer.authors,
-	isLoading: authorsReducer.isLoading
+	isLoading: authorsReducer.isLoading,
+	courses: coursesReducer.courses
 });
 
 export default connect(

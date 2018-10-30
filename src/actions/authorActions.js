@@ -42,7 +42,7 @@ export const loadAuthors = () => dispatch => {
 		});
 };
 
-export const saveAuthor = author => (dispatch, getState) => authorApi
+export const saveAuthor = author => dispatch => authorApi
 	.saveAuthor(author)
 	.then(savedAuthor => {
 		if (author.id) {

@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store';
 import nock from 'nock';
 
 import authorApi from '../api/mockCourseApi';
-import courses from '../test/__mocks__/mockCourses';
+import courses from '../__test__/__mocks__/mockCourses';
 import {
 	LOAD_COURSES_SUCCESS,
 	UPDATE_COURSE_SUCCESS,
@@ -17,73 +17,117 @@ import {
 	createCourseSuccess,
 	deleteCourseSuccess,
 	loadCourses,
-	saveCourse
+	saveCourse,
+	deleteCourse
 } from './courseActions';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('Course Actions', () => {
-	it('should call loadCoursesSuccess to load all courses', () => {
-		const expectedAction = {
-			type: LOAD_COURSES_SUCCESS, courses
-		};
-    
-		expect(loadCoursesSuccess(courses)).toEqual(expectedAction);
-	});
-  
-	it('should call updateCourseSuccess to update a course', () => {
-		const expectedAction = {
-			type: UPDATE_COURSE_SUCCESS, 
-			course: courses[0]
-		};
-    
-		expect(updateCourseSuccess(courses[0])).toEqual(expectedAction);
-	});
-  
-	it('should call createCourseSuccess to create a courses', () => {
-		const expectedAction = {
-			type: CREATE_COURSE_SUCCESS,
-			course: courses[0]
-		};
-    
-		expect(createCourseSuccess(courses[0])).toEqual(expectedAction);
-	});
-
-	it('should delete course when passed DELETE_COURSE_SUCCESS', () => {
-		const expectedAction = {
-			type: DELETE_COURSE_SUCCESS, 
-			courseId: courses[0].id
-		};
-    
-		expect(deleteCourseSuccess(courses[0].id)).toEqual(expectedAction);
-	});
-});
-
 describe('Async Actions', () => {
-	afterEach(() => {
-		nock.cleanAll();
+	describe('loadCourses Action', () => {
+		afterEach(() => {
+			nock.cleanAll();
+		});
+
+		it('should load courses when passes LOAD_COURSES_SUCCESS', async (done) => {
+			const expectedActions = [
+				{
+					type: ISLOADING_COURSES,
+					status: true
+				},
+				{
+					type: LOAD_COURSES_SUCCESS,
+					courses
+				},
+				{
+					type: ISLOADING_COURSES,
+					status: false
+				},
+			];
+
+			const store = mockStore({});
+			await store
+				.dispatch(loadCourses())
+				.then(() => {
+					expect(store.getActions()).toEqual(expectedActions);
+				});
+			done();
+		});
 	});
-	it('', (done) => {
-		const expectedActions = [
-			{
-				type: ISLOADING_COURSES,
-				status: true
-			},
-			{
-				type: LOAD_COURSES_SUCCESS,
-				body: { courses }
-			},
-			{
-				type: ISLOADING_COURSES,
-				status: false
-			},
-		];
-		const store = mockStore({ course: [], expectedActions });
-		store.dispatch(loadCourses())
-			.then(() => {
-				expect(store.getActions()).toEqual(expectedActions);
-			});
-		done();
+
+	describe('deleteCourse Action', () => {
+		afterEach(() => {
+			nock.cleanAll();
+		});
+
+		it('should delete course when passed DELETE_COURSE_SUCCESS', async (done) => {
+			const expectedAction = [
+				{
+					type: DELETE_COURSE_SUCCESS,
+					courseId: courses[0].id
+				},
+			];
+
+			const store = mockStore({});
+			await store
+				.dispatch(deleteCourse(courses[0].id))
+				.then(() => {
+					expect(store.getActions()).toEqual(expectedAction);
+				});
+			done();
+		});
+	});
+
+	describe('saveCourseAction', () => {
+		afterEach(() => {
+			nock.cleanAll();
+		});
+
+		it('should update course when passed UPDATE_COURSE_SUCCESS', async (done) => {
+			const expectedAction = [
+				{
+					type: UPDATE_COURSE_SUCCESS,
+					course: courses[0]
+				},
+			];
+
+			const store = mockStore({ courses: [] });
+			await store
+				.dispatch(saveCourse(courses[0]))
+				.then(() => {
+					expect(store.getActions()).toEqual(expectedAction);
+				});
+			done();
+		});
+
+		it('should save author when passed CREATE_COURSE_SUCCESS', async (done) => {
+			const expectedAction = [
+				{
+					type: CREATE_COURSE_SUCCESS,
+					course: {
+						id: 'Writing-Code',
+						title: 'Writing Code',
+						watchHref: 'http://www.pluralsight.com/courses/Writing-Code',
+						authorId: 'cory-house',
+						length: '3:10',
+						category: 'Software Practices'
+					}
+				},
+			];
+
+			const store = mockStore({});
+			await store
+				.dispatch(saveCourse({
+					title: 'Writing Code',
+					authorId: 'cory-house',
+					length: '3:10',
+					category: 'Software Practices'
+				}))
+				.then(() => {
+					expect(store.getActions()).toEqual(expectedAction);
+				});
+			done();
+		});
 	});
 });

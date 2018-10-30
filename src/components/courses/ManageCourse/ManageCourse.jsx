@@ -6,7 +6,7 @@ import { withRouter, Prompt } from 'react-router-dom';
 import inputValidation from '../../../helpers/inputValidation';
 import { saveCourse } from '../../../actions/courseActions';
 import CourseForm from '../CourseForm/CourseForm';
-import getById from '../../../helpers/getCourseById';
+import getById from '../../../helpers/getById';
 import formattedAuthorsDropdown from '../../../helpers/formatAuthorsDropdown';
 
 /**
@@ -29,10 +29,11 @@ export class ManageCourse extends Component {
 	})
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
-		if (nextProps.course.id && !prevState.course.id) {
+		const { match: { params: { id } }, courses } = nextProps;
+		if (id && courses && !prevState.course.id) {
 			return {
 				...ManageCourse.initialState(),
-				course: nextProps.course
+				course: Object.assign({}, getById(courses, id))
 			};
 		}
 		
@@ -90,6 +91,8 @@ export class ManageCourse extends Component {
 		const {
 			hasUnsavedChanges, course, loading, errors 
 		} = this.state;
+		
+		const formatedAuthors = formattedAuthorsDropdown(authors);
 
 		return (
 			<Fragment>
@@ -101,7 +104,7 @@ export class ManageCourse extends Component {
 					<h1 className="display-4">Manage Course</h1>
 				</div>
 				<CourseForm
-					allAuthors={authors}
+					allAuthors={formatedAuthors}
 					onChange={this.onChange}
 					onSave={this.saveCourse}
 					course={course}
@@ -119,19 +122,10 @@ ManageCourse.propTypes = {
 };
 
 
-const mapStateToProps = ({ coursesReducer, authorsReducer }, props) => {
-	const { id } = props.match.params;
-	let course = ManageCourse.initialState();
-
-	if (id && coursesReducer.courses.length > 0) {
-		course = Object.assign({}, getById(coursesReducer.courses, id));
-	}
-
-	return {
-		course,
-		authors: formattedAuthorsDropdown(authorsReducer.authors)
-	};
-};
+const mapStateToProps = ({ coursesReducer, authorsReducer }) => ({
+	courses: coursesReducer.courses,
+	authors: authorsReducer.authors
+});
 
 export default
 connect(mapStateToProps,

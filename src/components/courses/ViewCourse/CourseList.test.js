@@ -22,11 +22,19 @@ describe('CourseList Component', () => {
   
 	it('should render correctly', () => {
 		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.find('button')).toHaveLength(1);
+		expect(wrapper.find('button').text()).toEqual('Delete');
+		expect(wrapper.find('tr')).toHaveLength(1);
 	});
 
 	it('should call handleDeleteCourse method', () => {
 		const spy = jest.spyOn(wrapper.instance(), 'handleDeleteCourse');
 		wrapper.instance().handleDeleteCourse();
 		expect(spy).toHaveBeenCalled();
+	});
+
+	it('should simulate delete button click', () => {
+		expect(wrapper.find('button')).toHaveLength(1);
+		wrapper.find('button').simulate('click');
 	});
 });

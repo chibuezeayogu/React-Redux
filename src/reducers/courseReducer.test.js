@@ -6,7 +6,7 @@ import {
 	DELETE_COURSE_SUCCESS
 } from '../actions/actionTypes';
 import { initialCourses } from './initialState';
-import courses from '../test/__mocks__/mockCourses';
+import courses from '../__test__/__mocks__/mockCourses';
 import { 
 	createCourseSuccess, loadCoursesSuccess
 } from '../actions/courseActions';
