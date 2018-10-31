@@ -32,9 +32,9 @@ describe('CoursePage Component', () => {
 	});
 	
 	it('should call deleteCourse method', () => {
-		const deleteVendorSpy = jest.spyOn(wrapper.instance(), 'deleteCourse');
+		const deleteCourseSpy = jest.spyOn(wrapper.instance(), 'deleteCourse');
 		wrapper.instance().deleteCourse();
-		expect(deleteVendorSpy).toHaveBeenCalled();
+		expect(deleteCourseSpy).toHaveBeenCalled();
 	});
 	
 	it('should call handlePageChange method', () => {

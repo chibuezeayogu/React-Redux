@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter, Prompt } from 'react-router-dom';
 
 import { saveAuthor } from '../../../actions/authorActions';
-import AuthorsForm from '../authorsForm/AuthorsForm';
-import getById from '../../../helpers/getCourseById';
+import AuthorForm from '../AuthorForm/AuthorForm';
+import getById from '../../../helpers/getById';
 import inputValidation from '../../../helpers/inputValidation';
 
 
@@ -12,7 +12,7 @@ import inputValidation from '../../../helpers/inputValidation';
  * @class ManageAuthors
  * @extends Component
  */
-class ManageAuthor extends Component {
+export class ManageAuthor extends Component {
   static initialState = () => ({
   	author: {
   		id: '',
@@ -27,10 +27,12 @@ class ManageAuthor extends Component {
   state = ManageAuthor.initialState();
 
   static getDerivedStateFromProps(nextProps, prevState) {
-  	if (nextProps.author.id && !prevState.author.id) {
+  	const { match: { params: { id } }, authors } = nextProps;
+
+  	if (id && authors && !prevState.author.id) {
   		return {
   			...ManageAuthor.initialState(),
-  			author: nextProps.author
+  			author: Object.assign({}, getById(nextProps.authors, id))
   		};
   	}
     
@@ -98,7 +100,7 @@ class ManageAuthor extends Component {
   			<div className="jumbotron">
   				<h1 className="display-4">Manage Author</h1>
   			</div>
-  			<AuthorsForm
+  			<AuthorForm
   				author={author}
   				onChange={this.onChange}
   				errors={errors}
@@ -110,18 +112,9 @@ class ManageAuthor extends Component {
   }
 }
 
-const mapStateToProps = ({ coursesReducer, authorsReducer }, props) => {
-	const { id } = props.match.params;
-	let author = ManageAuthor.initialState();
-  
-	if (id && authorsReducer.authors.length > 0) {
-		author = Object.assign({}, getById(authorsReducer.authors, id));
-	}
-  
-	return {
-		author,
-		courses: coursesReducer.courses
-	};
-}; 
+const mapStateToProps = ({ coursesReducer, authorsReducer }) => ({
+	authors: authorsReducer.authors,
+	courses: coursesReducer.courses
+}); 
 
 export default connect(mapStateToProps, { saveAuthor })(ManageAuthor);

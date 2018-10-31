@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutPage Component should render correctly 1`] = `
+<form>
+  <TextInput
+    error=""
+    label="First Name"
+    name="firstName"
+    onChange={[MockFunction]}
+    value=""
+  />
+  <TextInput
+    error=""
+    label="Last Name"
+    name="lastName"
+    onChange={[MockFunction]}
+    value=""
+  />
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[MockFunction]}
+  >
+    Save
+  </button>
+</form>
+`;

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseList Component should render correctly 1`] = `
+<tr>
+  <td>
+    <Link
+      replace={false}
+      to="/author/chibueze-ayogu"
+    >
+      chibueze-ayogu
+    </Link>
+  </td>
+  <td>
+    Chibueze
+  </td>
+  <td>
+    Ayugo
+  </td>
+  <td>
+    <button
+      className="btn btn-danger"
+      onClick={[Function]}
+      type="button"
+    >
+      Delete
+    </button>
+  </td>
+</tr>
+`;

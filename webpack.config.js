@@ -10,14 +10,14 @@ module.exports = {
     resolve(__dirname, './src/index.js')
   ],
   output: {
-    path: resolve(__dirname, './dist'),
+    path: resolve(__dirname, 'dist'),
     filename: 'js/bundle.js',
     publicPath: '/'
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
-      filename: 'index.html',
+      filename: './index.html',
       inject: 'body',
 
     }),

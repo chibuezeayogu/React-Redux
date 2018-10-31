@@ -30,16 +30,12 @@ export class CoursesPage extends Component {
 		currentPage: 1,
 	})
 
-	constructor(props) {
-		super(props);
-
-		this.state = CoursesPage.initialState();
-	}
+	state = CoursesPage.initialState();
 
 	static getDerivedStateFromProps(nextProps, nextState) {
 		const { currentPage } = nextState;
 		let Output = {};
-		if (nextProps.courses.length > 0) {
+		if (nextProps.courses.length >= 0) {
 			Output = formatPagination(nextProps.courses, currentPage);
 			return {
 				...CoursesPage.initialState(),

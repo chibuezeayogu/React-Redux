@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageAuthor Component should render correctly 1`] = `
+<Fragment>
+  <Prompt
+    message="Your unsaved data will be lost"
+    when={false}
+  />
+  <div
+    className="jumbotron"
+  >
+    <h1
+      className="display-4"
+    >
+      Manage Author
+    </h1>
+  </div>
+  <AuthorForm
+    author={Object {}}
+    errors={Object {}}
+    loading={false}
+    onChange={[Function]}
+    onSave={[Function]}
+  />
+</Fragment>
+`;

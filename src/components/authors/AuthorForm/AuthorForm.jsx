@@ -4,7 +4,7 @@ import {
 } from 'prop-types';
 import TextInput from '../../common/TextInput/TextInput';
 
-const AuthorsForm = ({
+const AuthorForm = ({
 	author, onSave, onChange, loading, errors 
 }) => (
 	<form>
@@ -32,7 +32,7 @@ const AuthorsForm = ({
 	</form>
 );
 
-AuthorsForm.propTypes = {
+AuthorForm.propTypes = {
 	author: shape({}).isRequired,
 	onSave: func.isRequired,
 	onChange: func.isRequired,
@@ -40,4 +40,4 @@ AuthorsForm.propTypes = {
 	errors: object
 };
 
-export default AuthorsForm;
+export default AuthorForm;
