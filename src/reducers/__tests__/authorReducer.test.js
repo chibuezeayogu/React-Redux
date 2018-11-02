@@ -1,13 +1,13 @@
-import authorReducer from './authorReducer';
+import authorReducer from '../authorReducer';
 import {
 	LOAD_AUTHORS_SUCCESS,
 	DELETE_AUTHOR_SUCCESS,
 	UPDATE_AUTHOR_SUCCESS,
 	ISLOADING_AUTHORS,
 	CREATE_AUTHOR_SUCCESS
-} from '../actions/actionTypes';
-import { initialAuthors } from './initialState';
-import authors from '../__test__/__mocks__/mockAuthors';
+} from '../../actions/actionTypes';
+import { initialAuthors } from '../initialState';
+import authors from '../../__test__/__mocks__/mockAuthors';
 
 describe('Author Reducer', () => {
 	it('should return initial state', () => {
@@ -38,7 +38,7 @@ describe('Author Reducer', () => {
 			type: UPDATE_AUTHOR_SUCCESS,
 			author: authors[0]
 		};
-		
+
 		initialAuthors.authors.push(authors[0]);
 		expect(authorReducer(initialAuthors, action))
 			.toEqual({ authors: [authors[0]], isLoading: false });
@@ -49,7 +49,7 @@ describe('Author Reducer', () => {
 			type: DELETE_AUTHOR_SUCCESS,
 			authorId: authors[0].id
 		};
-		
+
 		initialAuthors.authors.push(authors[0]);
 		expect(authorReducer(initialAuthors, action))
 			.toEqual({ authors: [], isLoading: false });

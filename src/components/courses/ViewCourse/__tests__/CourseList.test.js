@@ -3,7 +3,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import CourseList from './CourseList';
+import CourseList from '../CourseList';
 
 describe('CourseList Component', () => {
 	const props = {
@@ -17,9 +17,9 @@ describe('CourseList Component', () => {
 			category: 'JavaScript'
 		}
 	};
-  
+
 	const wrapper = shallow(<CourseList {...props} />);
-  
+
 	it('should render correctly', () => {
 		expect(wrapper).toMatchSnapshot();
 		expect(wrapper.find('button')).toHaveLength(1);

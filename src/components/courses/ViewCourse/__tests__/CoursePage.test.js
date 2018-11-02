@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { CoursesPage } from './CoursesPage';
+import { CoursesPage } from '../CoursesPage';
 
 describe('CoursePage Component', () => {
 	const props = {
@@ -20,7 +20,7 @@ describe('CoursePage Component', () => {
 		deleteCourse: jest.fn().mockImplementation(() => Promise.resolve())
 	};
 	const wrapper = shallow(<CoursesPage {...props}/>);
-  
+
 	it('should render correctly', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
@@ -30,13 +30,13 @@ describe('CoursePage Component', () => {
 		wrapper.instance().redirectToAddCoursePage();
 		expect(spy).toHaveBeenCalled();
 	});
-	
+
 	it('should call deleteCourse method', () => {
 		const deleteCourseSpy = jest.spyOn(wrapper.instance(), 'deleteCourse');
 		wrapper.instance().deleteCourse();
 		expect(deleteCourseSpy).toHaveBeenCalled();
 	});
-	
+
 	it('should call handlePageChange method', () => {
 		const spy = jest.spyOn(wrapper.instance(), 'handlePageChange');
 		wrapper.instance().handlePageChange();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { ManageCourse } from './ManageCourse';
+import { ManageCourse } from '../ManageCourse';
 
 
 describe('ManageCourse Component', () => {
@@ -12,11 +12,11 @@ describe('ManageCourse Component', () => {
 		saveCourse: jest.fn().mockImplementation(() => Promise.resolve()),
 		match: { params: { id: 'courseID' } },
 		courses: [{
-			id: 'courseID', 
-			watchHref: '', 
-			title: '', 
-			authorId: '', 
-			length: '', 
+			id: 'courseID',
+			watchHref: '',
+			title: '',
+			authorId: '',
+			length: '',
 			category: ''
 		}],
 		authors: [{
@@ -25,21 +25,21 @@ describe('ManageCourse Component', () => {
 			lastName: 'House'
 		}]
 	};
- 
+
 	const state = {
 		course: {
 			id: '',
-			watchHref: '', 
-			title: '', 
-			authorId: '', 
-			length: '', 
+			watchHref: '',
+			title: '',
+			authorId: '',
+			length: '',
 			category: ''
 		},
 		auhtors: [],
 		errors: {},
 		hasUnsavedChanges: false
 	};
-  
+
 	const wrapper = shallow(<ManageCourse {...props} {...state} />);
 
 	it('should render correctly', () => {

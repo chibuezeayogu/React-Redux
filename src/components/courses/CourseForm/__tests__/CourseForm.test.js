@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import CourseForm from './CourseForm';
+import CourseForm from '../CourseForm';
 
 describe('AboutPage Component', () => {
 	const props = {
@@ -22,7 +22,7 @@ describe('AboutPage Component', () => {
 			length: ''
 		}
 	};
-  
+
 	const wrapper = shallow(<CourseForm {...props} />);
 
 	it('should render correctly', () => {

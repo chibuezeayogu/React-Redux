@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Header } from './Header';
+import { Header } from '../Header';
 
 
 describe('Header Component', () => {
@@ -22,7 +22,7 @@ describe('Header Component', () => {
 	};
 
 	const wrapper = shallow(<Header {...props} />);
-  
+
 	it('should render correctly', () => {
 		expect(wrapper).toMatchSnapshot();
 	});

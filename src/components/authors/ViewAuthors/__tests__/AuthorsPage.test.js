@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { AuthorsPage } from './AuthorsPage';
-import courses from '../../../__test__/__mocks__/mockCourses';
-import authors from '../../../__test__/__mocks__/mockAuthors';
+import { AuthorsPage } from '../AuthorsPage';
+import courses from '../../../../__test__/__mocks__/mockCourses';
+import authors from '../../../../__test__/__mocks__/mockAuthors';
 
 describe('AuthorsPage Component', () => {
 	const props = {
@@ -15,7 +15,7 @@ describe('AuthorsPage Component', () => {
 		deleteAuthor: jest.fn().mockImplementation(() => Promise.resolve())
 	};
 	const wrapper = shallow(<AuthorsPage {...props}/>);
-  
+
 	it('should render correctly', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
@@ -25,13 +25,13 @@ describe('AuthorsPage Component', () => {
 		wrapper.instance().redirectToAddAuthorPage();
 		expect(spy).toHaveBeenCalled();
 	});
-	
+
 	it('should call deleteCourse method', () => {
 		const deleteAuthorSpy = jest.spyOn(wrapper.instance(), 'deleteAuthor');
 		wrapper.instance().deleteAuthor();
 		expect(deleteAuthorSpy).toHaveBeenCalled();
 	});
-	
+
 	it('should call handlePageChange method', () => {
 		const spy = jest.spyOn(wrapper.instance(), 'handlePageChange');
 		wrapper.instance().handlePageChange();

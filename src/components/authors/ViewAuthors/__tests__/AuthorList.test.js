@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import AuthorList from './AuthorList';
+import AuthorList from '../AuthorList';
 
 describe('CourseList Component', () => {
 	const props = {
@@ -12,9 +12,9 @@ describe('CourseList Component', () => {
 			lastName: 'Ayugo'
 		}
 	};
-  
+
 	const wrapper = shallow(<AuthorList {...props} />);
-  
+
 	it('should render correctly', () => {
 		expect(wrapper).toMatchSnapshot();
 		expect(wrapper.find('button')).toHaveLength(1);
