@@ -2,15 +2,15 @@ import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import nock from 'nock';
 
-import authorApi from '../api/mockCourseApi';
-import courses from '../__test__/__mocks__/mockCourses';
+import authorApi from '../../api/mockCourseApi';
+import courses from '../../__test__/__mocks__/mockCourses';
 import {
 	LOAD_COURSES_SUCCESS,
 	UPDATE_COURSE_SUCCESS,
 	CREATE_COURSE_SUCCESS,
 	DELETE_COURSE_SUCCESS,
 	ISLOADING_COURSES
-} from './actionTypes';
+} from '../actionTypes';
 import {
 	loadCoursesSuccess,
 	updateCourseSuccess,
@@ -19,7 +19,7 @@ import {
 	loadCourses,
 	saveCourse,
 	deleteCourse
-} from './courseActions';
+} from '../courseActions';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

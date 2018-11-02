@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { ManageAuthor } from './ManageAuthor';
+import { ManageAuthor } from '../ManageAuthor';
 
 
 describe('ManageAuthor Component', () => {
@@ -12,11 +12,11 @@ describe('ManageAuthor Component', () => {
 		saveAuthor: jest.fn().mockImplementation(() => Promise.resolve()),
 		match: { params: { id: 'courseID' } },
 		courses: [{
-			id: 'courseID', 
-			watchHref: '', 
-			title: '', 
-			authorId: '', 
-			length: '', 
+			id: 'courseID',
+			watchHref: '',
+			title: '',
+			authorId: '',
+			length: '',
 			category: ''
 		}],
 		authors: [{
@@ -25,7 +25,7 @@ describe('ManageAuthor Component', () => {
 			lastName: 'House'
 		}]
 	};
-  
+
 	const wrapper = shallow(<ManageAuthor {...props} />);
 
 	it('should render correctly', () => {
@@ -58,8 +58,8 @@ describe('ManageAuthor Component', () => {
 		const spy = jest.spyOn(wrapper.instance(), 'saveAuthor');
 		wrapper.setState({
 			author: {
-				firstName: 'Chibueze', 
-				lastName: 'Ayogu', 
+				firstName: 'Chibueze',
+				lastName: 'Ayogu',
 			}
 		});
 		wrapper.instance().saveAuthor({ preventDefault: jest.fn() });

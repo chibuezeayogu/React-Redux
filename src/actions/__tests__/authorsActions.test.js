@@ -2,21 +2,21 @@ import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import nock from 'nock';
 
-import authorApi from '../api/mockCourseApi';
-import authors from '../__test__/__mocks__/mockAuthors';
+import authorApi from '../../api/mockAuthorApi';
+import authors from '../../__test__/__mocks__/mockAuthors';
 import {
 	LOAD_AUTHORS_SUCCESS,
 	ISLOADING_AUTHORS,
 	DELETE_AUTHOR_SUCCESS,
 	CREATE_AUTHOR_SUCCESS,
 	UPDATE_AUTHOR_SUCCESS,
-} from './actionTypes';
+} from '../actionTypes';
 import {
 	loadAuthorsSuccess,
 	loadAuthors,
 	deleteAuthor,
 	saveAuthor
-} from './authorActions';
+} from '../authorActions';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -27,7 +27,7 @@ describe('Author Actions', () => {
 			const expectedAction = {
 				type: LOAD_AUTHORS_SUCCESS, authors
 			};
-      
+
 			expect(loadAuthorsSuccess(authors)).toEqual(expectedAction);
 		});
 	});

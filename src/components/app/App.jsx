@@ -6,7 +6,7 @@ import Header from '../common/Header/Header';
 import HomePage from '../home/HomePage';
 import AboutPage from '../about/AboutPage';
 import ManageCoursePage from '../courses/ManageCourse/ManageCourse';
-import AuthorsPage from '../authors/viewAuthors/AuthorsPage';
+import AuthorsPage from '../authors/ViewAuthors/AuthorsPage';
 import ManageAuthor from '../authors/ManageAuthor/ManageAuthor';
 import NotFound from '../notFoundPage/NotFound';
 

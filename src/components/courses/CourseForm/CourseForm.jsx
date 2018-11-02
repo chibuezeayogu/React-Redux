@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import {
-	object, array, func, bool 
+	object, array, func, bool
 } from 'prop-types';
 import TextInput from '../../common/TextInput/TextInput';
 import SelectInput from '../../common/SelectInput/SelectInput';
 
 const CourseForm = ({
-	course, allAuthors, onSave, onChange, loading, errors 
+	course, allAuthors, onSave, onChange, loading, errors
 }) => (
 	<form>
 		<TextInput
